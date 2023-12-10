@@ -9,6 +9,13 @@ export async function POST(req: NextRequest) {
     const { userEmail } = await req.json();
     const user = await User.findOne({ email: userEmail });
 
+    if (user.cart.length === 0) {
+      return NextResponse.json({
+        message: "No products in cart!",
+        status: 404,
+      });
+    }
+
     const orders = user.cart.map((p: any) => ({
       title: p.title,
       price: p.price,
