@@ -22,17 +22,10 @@ export default function Cart() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/cart/order", {
+      await fetch("https://m2vira.vercel.app/api/cart/order", {
         method: "POST",
         body: JSON.stringify({ userEmail: session?.user?.email }),
       });
-
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        toast.error(data.message);
-        router.push("/cart/mine");
-      }
 
       setLoading(false);
     };
