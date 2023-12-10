@@ -4,7 +4,7 @@ import { getImage } from "@/helpers/firebaseStorage";
 
 export default async function AllProducts() {
   const res = await fetch(`https://m2vira.vercel.app/api/products/all`, {
-    cache: "no-cache",
+    next: { revalidate: 10 },
   });
 
   const data = await res.json();
