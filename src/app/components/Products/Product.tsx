@@ -5,25 +5,26 @@ export const Product = ({ product }: any) => {
   return (
     <div
       key={product._id}
-      className="max-w-xs rounded-xl overflow-hidden shadow-xl hover:scale-[1.03] bg-gradient-to-r from-slate-300 via-white to-slate-300 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 m-5"
+      className="rounded-xl max-w-xs sm:max-w-xs overflow-hidden shadow-xl md:hover:scale-[1.03] bg-gradient-to-r from-slate-300 via-white to-slate-300 md:bg-[position:_0%_0%] md:hover:bg-[position:_100%_100%]  md:bg-[size:_200%] md:transition-all md:duration-500 mx-2 my-4 md:mx-6"
     >
       <Link href={`/products/details/${product._id}`}>
-        <Image
-          src={product.image}
-          alt="Dress"
-          width={512}
-          height={512}
-          priority
-        />
-
-        <hr className="w-48 h-1 mx-auto my-4 border-0 rounded bg-slate-950 drop-shadow-lg" />
+        <div className="relative">
+          <Image
+            src={product.image}
+            alt="Dress"
+            width={512}
+            height={512}
+            layout="responsive"
+            priority
+          />
+          <hr className="w-48 h-1 mx-auto my-4 border-0 rounded bg-slate-950 drop-shadow-lg absolute bottom-0 left-1/2 transform -translate-x-1/2" />
+        </div>
       </Link>
-      <div className="py-4 px-4 flex flex-col items-center cursor-default">
-        <h3 className="text-xl font-semibold text-slate-950 w-full truncate">
+      <div className="py-2 px-4 sm:py-4 sm:px-6 flex flex-col items-center cursor-default">
+        <h3 className="md:text-lg text-sm font-semibold text-slate-950 w-full truncate text-center">
           {product.title}
         </h3>
-
-        <p className="mt-4 text-xl font-bold text-slate-950">
+        <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-bold text-slate-950">
           ${product.price}
         </p>
       </div>

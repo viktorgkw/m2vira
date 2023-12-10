@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Filters = ({ setGender, setSize, setSearchTerm }: any) => {
   return (
-    <div className="bg-white bg-opacity-75 rounded-xl px-10 py-6">
+    <div className="bg-white bg-opacity-75 rounded-xl px-10 py-6 mx-3 md:mx-0 mt-4">
       <div className="flex flex-col items-center justify-center text-slate-800 font-bold">
         <p className="text-xl mb-2">Gender</p>
 

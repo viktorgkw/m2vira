@@ -50,12 +50,12 @@ export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
 
       {filteredProducts.length === 0 ? (
         <div className="mt-16">
-          <p className="font-bold text-red-500 text-2xl">
+          <p className="font-bold text-red-500 text-2xl md:text-3xl text-center">
             No products found that match your search!
           </p>
         </div>
       ) : (
-        <div className="flex flex-wrap items-center justify-center my-8">
+        <div className="flex flex-wrap items-center justify-center my-6">
           {filteredProducts.map((p: ProductInfo) => (
             <Product key={p._id} product={p} />
           ))}

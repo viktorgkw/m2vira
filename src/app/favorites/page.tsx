@@ -77,7 +77,7 @@ export default function Favorites() {
           Your Favorites
         </p>
 
-        <hr className="h-1 w-96 mx-auto my-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+        <hr className="h-1 w-52 md:w-96 mx-auto mb-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
 
         {!favorites || !session?.user ? (
           <Loading />

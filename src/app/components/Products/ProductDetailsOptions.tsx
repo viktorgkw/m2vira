@@ -92,7 +92,7 @@ export const ProductDetailsOptions = ({
 
   return (
     <>
-      <div className="flex flex-col mt-6 pb-5 mb-6">
+      <div className="flex flex-col my-6 pb-5">
         <div className="flex flex-wrap items-center mb-3">
           <span className="mr-3 text-slate-200 font-bold">Colors:</span>
           {product?.colors.map((c) => {
@@ -141,9 +141,9 @@ export const ProductDetailsOptions = ({
         </div>
       </div>
 
-      <hr className="w-full h-1 my-4 border-0 rounded mt-5 mb-12 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+      <hr className="w-full h-1 border-0 rounded mb-8 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
 
-      <div className="flex items-center">
+      <div className="flex items-center flex-col md:flex-row">
         <span className="text-2xl text-slate-200 font-bold">
           ${product?.price}
         </span>
@@ -153,7 +153,7 @@ export const ProductDetailsOptions = ({
             <button
               onClick={onCartAdd}
               disabled={isButtonDisabled}
-              className="flex ml-auto mr-2 px-2 py-2 bg-sky-500 hover:bg-sky-400 text-white font-bold border-b-4 border-blue-800 hover:border-blue-600 rounded hover:scale-[1.05] duration-300"
+              className="flex md:ml-auto mr-2 px-2 py-2 bg-sky-500 hover:bg-sky-400 text-white font-bold border-b-4 border-blue-800 hover:border-blue-600 rounded hover:scale-[1.05] duration-300 text-base my-2 md:my-0"
             >
               Add to cart
             </button>

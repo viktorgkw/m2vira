@@ -90,7 +90,7 @@ export default function Cart() {
           Your Cart
         </p>
 
-        <hr className="h-1 w-72 mx-auto my-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+        <hr className="h-1 w-36 md:w-72 mx-auto mb-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
 
         <div className="flex flex-col max-w-3xl space-y-4 bg-opacity-50 bg-white rounded-xl px-8 py-12">
           {!session?.user || loading ? (
