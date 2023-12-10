@@ -7,6 +7,11 @@ export async function POST(req: NextRequest) {
     await connect();
 
     const { email } = await req.json();
+    if (!email) {
+      return NextResponse.json({
+        status: 404,
+      });
+    }
 
     const user = await User.findOne({ email });
 

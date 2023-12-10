@@ -27,6 +27,10 @@ export default function CreateProduct() {
 
       const data = await res.json();
 
+      if (data.status === 404) {
+        return;
+      }
+
       if (!data.isAdmin) {
         router.push("/products/all");
         return;
