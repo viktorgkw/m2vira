@@ -3,9 +3,11 @@ import { ProductsDisplay } from "@/app/components/Products/ProductsDisplay";
 import { getImage } from "@/helpers/firebaseStorage";
 
 export default async function AllProducts() {
-  const response = await fetch(`https://m2vira.vercel.app/api/products/all`);
+  const res = await fetch(`https://m2vira.vercel.app/api/products/all`, {
+    cache: "no-cache",
+  });
 
-  const data = await response.json();
+  const data = await res.json();
 
   if (data.status !== 200 || data.products.length === 0) return <NoProducts />;
 
@@ -21,5 +23,3 @@ export default async function AllProducts() {
     </div>
   );
 }
-
-export const revalidate = 10;
