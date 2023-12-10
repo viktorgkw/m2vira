@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Varela_Round } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toast } from "./components/Toast";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
@@ -43,6 +44,7 @@ export default function RootLayout({
 
           <main className="min-h-screen py-3 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">
             {children}
+            <SpeedInsights />
           </main>
 
           <Footer />
