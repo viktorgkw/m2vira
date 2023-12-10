@@ -17,7 +17,6 @@ export const FavoriteProduct = ({ product, disabled, removeFavorite }: any) => {
           alt="Dress"
           width={512}
           height={512}
-          layout="responsive"
           priority
         />
 

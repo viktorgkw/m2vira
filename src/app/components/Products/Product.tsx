@@ -5,7 +5,7 @@ export const Product = ({ product }: any) => {
   return (
     <div
       key={product._id}
-      className="rounded-xl max-w-xs sm:max-w-xs overflow-hidden shadow-xl md:hover:scale-[1.03] bg-gradient-to-r from-slate-300 via-white to-slate-300 md:bg-[position:_0%_0%] md:hover:bg-[position:_100%_100%]  md:bg-[size:_200%] md:transition-all md:duration-500 mx-2 my-4 md:mx-6"
+      className="rounded-xl max-w-xs overflow-hidden shadow-xl md:hover:scale-[1.03] bg-gradient-to-r from-slate-300 via-white to-slate-300 bg-[position:_0%_0%] md:hover:bg-[position:_100%_100%] md:bg-[size:_200%] md:transition-all md:duration-500 mx-2 my-4 md:mx-6"
     >
       <Link href={`/products/details/${product._id}`}>
         <div className="relative">
@@ -14,7 +14,6 @@ export const Product = ({ product }: any) => {
             alt="Dress"
             width={512}
             height={512}
-            layout="responsive"
             priority
           />
 
