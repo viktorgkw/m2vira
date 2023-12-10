@@ -7,7 +7,7 @@ import { ProductDetailsOptions } from "@/app/components/Products/ProductDetailsO
 config.autoAddCss = false;
 
 export default async function ProductDetails({ params }: any) {
-  const res = await fetch(`${process.env.DOMAIN}/api/products/details`, {
+  const res = await fetch(`http://localhost:3000/api/products/details`, {
     method: "POST",
     body: JSON.stringify({ id: params.id }),
     next: { revalidate: 5 },

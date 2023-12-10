@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -18,17 +17,18 @@ export default function ContactUs() {
     setIsDisabled(true);
 
     try {
-      const res = await axios.post("/api/contactus", {
-        from,
-        subject,
-        message,
+      const res = await fetch("http://localhost:3000/api/contactus", {
+        method: "POST",
+        body: JSON.stringify({ from, subject, message }),
       });
 
-      if (res.data.status !== 200) {
-        throw new Error(res.data.message);
+      const data = await res.json();
+
+      if (data.status !== 200) {
+        throw new Error(data.message);
       }
 
-      toast.success(res.data.message);
+      toast.success(data.message);
       router.push("/");
     } catch (err: any) {
       toast.error(err.message);

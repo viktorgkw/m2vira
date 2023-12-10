@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href={process.env.DOMAIN} className="flex items-center">
+            <a href="http://localhost:3000" className="flex items-center">
               <Image
                 src="/logo-white.png"
                 width={128}
@@ -60,7 +60,7 @@ export const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm sm:text-center text-slate-200 cursor-default font-bold">
             © {new Date().getFullYear()}
-            <a href={process.env.DOMAIN} className="hover:text-white">
+            <a href="http://localhost:3000" className="hover:text-white">
               {" "}
               m2vira™
             </a>
