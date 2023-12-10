@@ -52,7 +52,7 @@ export const NavBar = () => {
                 <>
                   <li className="mx-3 text-slate-200 hover:text-sky-500">
                     <Link
-                      href="/cart"
+                      href="/cart/mine"
                       className="flex flex-col justify-center items-center"
                     >
                       <FontAwesomeIcon

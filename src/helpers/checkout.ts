@@ -18,7 +18,7 @@ export async function checkout({ lineItems }: any) {
   await stripe.redirectToCheckout({
     mode: "payment",
     lineItems,
-    successUrl: "https://m2vira.vercel.app/profile",
-    cancelUrl: "https://m2vira.vercel.app/cart",
+    successUrl: "https://m2vira.vercel.app/cart/checkout",
+    cancelUrl: "https://m2vira.vercel.app/cart/mine",
   });
 }

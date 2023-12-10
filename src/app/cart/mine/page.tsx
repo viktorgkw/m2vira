@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { getImage } from "@/helpers/firebaseStorage";
 import { checkout } from "@/helpers/checkout";
-import { CartProduct } from "../components/Cart/CartProduct";
+import { CartProduct } from "../../components/Cart/CartProduct";
 
 type Product = {
   id: string;

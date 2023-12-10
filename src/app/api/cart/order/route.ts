@@ -6,16 +6,8 @@ export async function POST(req: NextRequest) {
   try {
     await connect();
 
-    const { data, userEmail } = await req.json();
+    const { userEmail } = await req.json();
     const user = await User.findOne({ email: userEmail });
-
-    if (!user) {
-      throw new Error("Unauthorized!");
-    }
-
-    if (user.cart.length === 0) {
-      throw new Error("No products in your cart!");
-    }
 
     const orders = user.cart.map((p: any) => ({
       title: p.title,
