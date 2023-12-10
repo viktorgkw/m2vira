@@ -17,7 +17,7 @@ export default function ContactUs() {
     setIsDisabled(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/contactus", {
+      const res = await fetch("https://m2vira.vercel.app/api/contactus", {
         method: "POST",
         body: JSON.stringify({ from, subject, message }),
       });

@@ -35,7 +35,7 @@ export default function Cart() {
     setLoading(true);
 
     const fetchData = async () => {
-      const res = await fetch("http://localhost:3000/api/cart/get", {
+      const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
@@ -66,7 +66,7 @@ export default function Cart() {
   }, [router, session?.user?.email]);
 
   const removeFromCart = async (prodId: any) => {
-    const res = await fetch(`http://localhost:3000/api/cart/delete`, {
+    const res = await fetch(`https://m2vira.vercel.app/api/cart/delete`, {
       method: "POST",
       body: JSON.stringify({ id: prodId, email: session?.user?.email }),
     });

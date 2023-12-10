@@ -30,7 +30,7 @@ export default function Favorites() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:3000/api/favorites/all`, {
+      const res = await fetch(`https://m2vira.vercel.app/api/favorites/all`, {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
@@ -54,7 +54,7 @@ export default function Favorites() {
   const removeFavorite = async (prodId: any) => {
     setDisabled(true);
 
-    const raw = await fetch(`http://localhost:3000/api/favorites/remove`, {
+    const raw = await fetch(`https://m2vira.vercel.app/api/favorites/remove`, {
       method: "POST",
       body: JSON.stringify({ _id: prodId, email: session!.user?.email }),
     });

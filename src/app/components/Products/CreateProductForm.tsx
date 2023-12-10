@@ -16,7 +16,7 @@ type ProductInfo = {
   tags: string;
 };
 
-const DOMAIN = "http://localhost:3000";
+const DOMAIN = "https://m2vira.vercel.app";
 
 export const CreateProductForm = () => {
   const router = useRouter();

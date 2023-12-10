@@ -27,10 +27,13 @@ export const EditProductForm = ({ id }: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:3000/api/products/details`, {
-        method: "POST",
-        body: JSON.stringify({ id }),
-      });
+      const res = await fetch(
+        `https://m2vira.vercel.app/api/products/details`,
+        {
+          method: "POST",
+          body: JSON.stringify({ id }),
+        }
+      );
 
       const data = await res.json();
 

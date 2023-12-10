@@ -42,7 +42,7 @@ export const ProductDetailsOptions = ({
     setIsButtonDisabled(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/api/favorites/add`, {
+      const res = await fetch(`https://m2vira.vercel.app/api/favorites/add`, {
         method: "POST",
         body: JSON.stringify({
           _id: product?._id,
@@ -68,7 +68,7 @@ export const ProductDetailsOptions = ({
     setIsButtonDisabled(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/api/cart/add`, {
+      const res = await fetch(`https://m2vira.vercel.app/api/cart/add`, {
         method: "POST",
         body: JSON.stringify({
           productState,
