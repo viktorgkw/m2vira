@@ -20,7 +20,6 @@ export const EditProductForm = ({ id }: any) => {
 
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [product, setProduct] = useState<ProductInfo | null>();
-  const [loading, setLoading] = useState(true);
 
   const [textareaRows, setTextareaRows] = useState(6);
   const [textareaCols, setTextareaCols] = useState(32);
@@ -42,7 +41,6 @@ export const EditProductForm = ({ id }: any) => {
       }
 
       setProduct(data.product);
-      setLoading(false);
     };
 
     fetchData();

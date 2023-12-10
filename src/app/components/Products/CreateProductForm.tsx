@@ -16,8 +16,6 @@ type ProductInfo = {
   tags: string;
 };
 
-const DOMAIN = "https://m2vira.vercel.app";
-
 export const CreateProductForm = () => {
   const router = useRouter();
 
@@ -72,7 +70,7 @@ export const CreateProductForm = () => {
 
   const create = async () => {
     try {
-      const res = await fetch(`${DOMAIN}/api/products/create`, {
+      const res = await fetch(`https://m2vira.vercel.app/api/products/create`, {
         method: "POST",
         headers: {
           Accept: "application/json",

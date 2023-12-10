@@ -17,7 +17,8 @@ export const Product = ({ product }: any) => {
             layout="responsive"
             priority
           />
-          <hr className="w-48 h-1 mx-auto my-4 border-0 rounded bg-slate-950 drop-shadow-lg absolute bottom-0 left-1/2 transform -translate-x-1/2" />
+
+          <hr className="w-48 h-1 mx-auto border-0 rounded bg-slate-950 drop-shadow-lg absolute bottom-0 left-1/2 transform -translate-x-1/2" />
         </div>
       </Link>
       <div className="py-2 px-4 sm:py-4 sm:px-6 flex flex-col items-center cursor-default">
