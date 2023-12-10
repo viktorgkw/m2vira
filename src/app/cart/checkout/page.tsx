@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CheckoutForm } from "@/app/components/Cart/CheckoutForm";
+import { useSession } from "next-auth/react";
 
 const Shipping = 8.99;
 
@@ -16,6 +17,7 @@ type UserData = {
 };
 
 export default function Checkout() {
+  const { data: session } = useSession();
   const router = useRouter();
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -33,7 +35,7 @@ export default function Checkout() {
     try {
       const res = await fetch("/api/cart/order", {
         method: "POST",
-        body: JSON.stringify({ data: data }),
+        body: JSON.stringify({ data: data, userEmail: session?.user?.email }),
       });
 
       const result = await res.json();

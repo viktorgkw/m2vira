@@ -42,6 +42,7 @@ export const validateCardData = (data: any) => {
     !data.cardNumber.match(/^\d{4}-\d{4}-\d{4}-\d{4}$/) ||
     !data.expireDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/) ||
     isNaN(data.CVC) ||
-    data.CVC.toString().length !== 3
+    data.CVC.toString().length < 3 ||
+    data.CVC.toString().length > 4
   );
 };

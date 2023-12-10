@@ -60,6 +60,7 @@ export const CheckoutForm = ({ setData, data, setIsDisabled }: any) => {
           onChange={(e) => setData({ ...data, CVC: Number(e.target.value) })}
           type="number"
           name="credit-cvc"
+          min={100}
           className="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 text-slate-800"
           placeholder="CVC"
         />
@@ -72,7 +73,7 @@ export const CheckoutForm = ({ setData, data, setIsDisabled }: any) => {
             type="text"
             id="billing-address"
             name="billing-address"
-            className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 text-slate-800"
+            className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 text-slate-800 uppercase"
             placeholder="Full address"
           />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3 text-slate-800">
