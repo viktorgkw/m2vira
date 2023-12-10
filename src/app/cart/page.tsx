@@ -34,6 +34,12 @@ export default function Cart() {
   const [checkoutDisabled, setCheckoutDisabled] = useState(true);
 
   useEffect(() => {
+    if (products.length > 0) {
+      setCheckoutDisabled(false);
+    }
+  }, [products]);
+
+  useEffect(() => {
     setLoading(true);
 
     const fetchData = async () => {
@@ -50,8 +56,6 @@ export default function Cart() {
       }
 
       setProducts(data.cart);
-
-      if (data.cart.length > 0) setCheckoutDisabled(false);
 
       setSubtotal(
         data.cart.reduce((total: any, { price }: any) => total + price, 0)
@@ -138,22 +142,28 @@ export default function Cart() {
             >
               Continue Shopping
             </Link>
-            <button
-              disabled={checkoutDisabled}
-              onClick={() =>
-                checkout({
-                  lineItems: [
-                    {
-                      price: "price_1OLruHIZzuSRsj5vuTGSzjcR",
-                      quantity: 1,
-                    },
-                  ],
-                })
-              }
-              className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300"
-            >
-              Checkout
-            </button>
+
+            <div className="has-tooltip">
+              <span className="tooltip rounded-xl shadow-lg bg-opacity-75 bg-white mt-12 px-2 py-1">
+                Test Card: 4242-4242-4242-4242
+              </span>
+              <button
+                disabled={checkoutDisabled}
+                onClick={() =>
+                  checkout({
+                    lineItems: [
+                      {
+                        price: "price_1OLruHIZzuSRsj5vuTGSzjcR",
+                        quantity: 1,
+                      },
+                    ],
+                  })
+                }
+                className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50"
+              >
+                Checkout
+              </button>
+            </div>
           </div>
         </div>
       </div>
