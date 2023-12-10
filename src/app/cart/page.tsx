@@ -36,6 +36,8 @@ export default function Cart() {
   useEffect(() => {
     if (products.length > 0) {
       setCheckoutDisabled(false);
+    } else {
+      setCheckoutDisabled(true);
     }
   }, [products]);
 
