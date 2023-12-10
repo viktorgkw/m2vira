@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { NoProducts } from "@/app/components/Products/NoProducts";
 import { ProductsDisplay } from "@/app/components/Products/ProductsDisplay";
 import { getImage } from "@/helpers/firebaseStorage";
 
-export default async function AllProducts() {
+export default function AllProducts() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
