@@ -8,11 +8,8 @@ config.autoAddCss = false;
 
 export const CartProduct = ({ product, removeFromCart }: any) => {
   return (
-    <li
-      key={product.id}
-      className="flex flex-col sm:flex-row sm:justify-between"
-    >
-      <div className="flex w-full space-x-2 sm:space-x-4">
+    <li key={product.id} className="flex flex-row md:flex-col">
+      <div className="flex">
         {product.image ? (
           <Link href={`/products/details/${product.id}`}>
             <Image src={product.image} width={128} height={128} alt="Product" />
@@ -31,7 +28,7 @@ export const CartProduct = ({ product, removeFromCart }: any) => {
         <div className="flex flex-col justify-between w-full pb-4 text-slate-800">
           <div className="flex justify-between w-full pb-2 space-x-2">
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold leadi sm:pr-8">
+              <h3 className="md:text-lg text-sm font-semibold text-slate-950">
                 {product.title}
               </h3>
               <p className="text-sm">Size: {product.size}</p>

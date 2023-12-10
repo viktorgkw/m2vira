@@ -17,17 +17,18 @@ export const FavoriteProduct = ({ product, disabled, removeFavorite }: any) => {
           alt="Dress"
           width={512}
           height={512}
+          layout="responsive"
           priority
         />
 
         <hr className="w-48 h-1 mx-auto my-4 border-0 rounded bg-slate-950 drop-shadow-lg" />
       </Link>
       <div className="py-4 px-4 flex flex-col items-center">
-        <h3 className="text-xl font-semibold text-slate-950">
+        <h3 className="md:text-lg text-sm font-semibold text-slate-950 w-full truncate text-center">
           {product.title}
         </h3>
 
-        <p className="mt-4 text-xl font-bold text-slate-950">
+        <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-bold text-slate-950">
           ${product.price}
         </p>
 
