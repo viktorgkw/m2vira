@@ -6,7 +6,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { getImage } from "@/helpers/firebaseStorage";
-import { CartProduct } from "../../components/Cart/CartProduct";
+import { checkout } from "@/helpers/checkout";
+import { CartProduct } from "../components/Cart/CartProduct";
 
 type Product = {
   id: string;
@@ -30,6 +31,7 @@ export default function Cart() {
   const [products, setProducts] = useState<Product[]>([]);
   const [subtotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [checkoutDisabled, setCheckoutDisabled] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -48,6 +50,8 @@ export default function Cart() {
       }
 
       setProducts(data.cart);
+
+      if (data.cart.length > 0) setCheckoutDisabled(false);
 
       setSubtotal(
         data.cart.reduce((total: any, { price }: any) => total + price, 0)
@@ -134,12 +138,22 @@ export default function Cart() {
             >
               Continue Shopping
             </Link>
-            <Link
-              href="/cart/checkout"
+            <button
+              disabled={checkoutDisabled}
+              onClick={() =>
+                checkout({
+                  lineItems: [
+                    {
+                      price: "price_1OLruHIZzuSRsj5vuTGSzjcR",
+                      quantity: 1,
+                    },
+                  ],
+                })
+              }
               className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300"
             >
               Checkout
-            </Link>
+            </button>
           </div>
         </div>
       </div>
