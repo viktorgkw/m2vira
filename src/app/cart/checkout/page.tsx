@@ -27,7 +27,6 @@ export default function Cart() {
         body: JSON.stringify({ userEmail: session?.user?.email }),
       });
 
-      toast.success("");
       setLoading(false);
     };
 
