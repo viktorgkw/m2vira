@@ -27,14 +27,16 @@ export const CartProduct = ({ product, removeFromCart }: any) => {
 
         <div className="flex flex-col justify-between w-full pb-4 text-slate-800">
           <div className="flex justify-between w-full pb-2 space-x-2">
-            <div className="space-y-1">
-              <h3 className="md:text-lg text-sm font-semibold text-slate-950">
+            <div className="space-y-1 dark:text-slate-200 text-slate-800">
+              <h3 className="md:text-lg text-sm font-semibold">
                 {product.title}
               </h3>
+
               <p className="text-sm">Size: {product.size}</p>
             </div>
+
             <div className="text-right">
-              <p className="text-lg font-semibold text-emerald-600">
+              <p className="text-lg font-semibold text-emerald-600 dark:text-emerald-500">
                 ${product.price}
               </p>
             </div>

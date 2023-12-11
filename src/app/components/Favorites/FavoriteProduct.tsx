@@ -10,7 +10,7 @@ config.autoAddCss = false;
 
 export const FavoriteProduct = ({ product, disabled, removeFavorite }: any) => {
   return (
-    <div className="max-w-xs rounded-xl overflow-hidden shadow-xl hover:scale-[1.03] bg-gradient-to-r from-slate-300 via-white to-slate-300 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 m-5">
+    <div className="rounded-xl max-w-xs overflow-hidden shadow-xl md:hover:scale-[1.03] bg-slate-200 dark:bg-slate-800 bg-opacity-40 dark:bg-opacity-40 md:transition-all md:duration-500 mx-2 my-4 md:mx-6 dark:text-slate-200 text-slate-800">
       <Link href={`/products/details/${product._id}`}>
         <Image
           src={product.image}
@@ -20,14 +20,14 @@ export const FavoriteProduct = ({ product, disabled, removeFavorite }: any) => {
           priority
         />
 
-        <hr className="w-48 h-1 mx-auto my-4 border-0 rounded bg-slate-950 drop-shadow-lg" />
+        <hr className="w-48 h-1 mx-auto my-4 border-0 rounded dark:bg-slate-300 bg-slate-800 drop-shadow-lg" />
       </Link>
-      <div className="py-4 px-4 flex flex-col items-center">
-        <h3 className="md:text-lg text-sm font-semibold text-slate-950 w-full truncate text-center">
+      <div className="py-4 px-4 flex flex-col items-center cursor-default">
+        <h3 className="md:text-lg text-sm font-semibold w-full truncate text-center">
           {product.title}
         </h3>
 
-        <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-bold text-slate-950">
+        <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-bold">
           ${product.price}
         </p>
 

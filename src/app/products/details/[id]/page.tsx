@@ -23,9 +23,9 @@ export default async function ProductDetails({ params }: any) {
 
   return (
     <>
-      <section className="text-gray-700 body-font overflow-hidden">
+      <section className="body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto cursor-default">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap bg-white bg-opacity-25 rounded p-5">
+          <div className="lg:w-4/5 mx-auto flex flex-wrap dark:bg-slate-800 dark:bg-opacity-40 bg-slate-200 bg-opacity-40 rounded-xl p-5">
             <Image
               priority
               width={2048}
@@ -35,15 +35,15 @@ export default async function ProductDetails({ params }: any) {
               src={image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 className="text-sm text-slate-800 tracking-widest">
+              <h2 className="text-sm text-slate-800 dark:text-slate-200 tracking-widest">
                 {data.product?.tags.join("/")}
               </h2>
 
-              <h1 className="text-slate-200 text-3xl mb-1 font-bold">
+              <h1 className="text-slate-800 dark:text-slate-200 text-3xl my-1 font-bold">
                 {data.product?.title}
               </h1>
 
-              <p className="leading-relaxed text-slate-800">
+              <p className="leading-relaxed text-slate-800 dark:text-slate-200">
                 {data.product?.description}
               </p>
 

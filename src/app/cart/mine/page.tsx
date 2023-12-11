@@ -45,7 +45,8 @@ export default function Cart() {
     setLoading(true);
 
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
+      // const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
+      const res = await fetch("http://localhost:3000/api/cart/get", {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
@@ -102,7 +103,7 @@ export default function Cart() {
 
         <hr className="h-1 w-36 md:w-72 mx-auto mb-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
 
-        <div className="flex flex-col max-w-3xl space-y-4 bg-opacity-50 bg-white rounded-xl px-8 py-12">
+        <div className="flex flex-col max-w-3xl space-y-4 bg-opacity-50 dark:bg-opacity-50 bg-slate-200 dark:bg-slate-800 rounded-xl px-8 py-12">
           {!session?.user || loading ? (
             <div className="my-2">
               <p className="font-bold text-slate-200 text-lg">Loading...</p>
@@ -128,12 +129,12 @@ export default function Cart() {
           <div className="space-y-1 text-right">
             <p>
               Total amount:
-              <span className="font-semibold text-emerald-700">
+              <span className="font-semibold text-emerald-600 dark:text-emerald-500">
                 {" "}
                 ${subtotal.toFixed(2)}
               </span>
             </p>
-            <p className="text-sm text-red-500">
+            <p className="text-sm font-bold text-red-500">
               Not including taxes and shipping costs
             </p>
           </div>

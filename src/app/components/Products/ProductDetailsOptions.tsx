@@ -94,10 +94,14 @@ export const ProductDetailsOptions = ({
     <>
       <div className="flex flex-col my-6 pb-5">
         <div className="flex flex-wrap items-center mb-3">
-          <span className="mr-3 text-slate-200 font-bold">Colors:</span>
+          <span className="mr-3 text-slate-800 dark:text-slate-200 font-bold">
+            Colors:
+          </span>
           {product?.colors.map((c) => {
             const isSelected =
-              c === productState.color ? "bg-slate-200 rounded-full" : "";
+              c === productState.color
+                ? "bg-slate-800 text-slate-200 dark:text-slate-800 dark:bg-slate-200 rounded-full"
+                : "text-slate-800 dark:text-slate-200";
 
             return (
               <p
@@ -108,7 +112,7 @@ export const ProductDetailsOptions = ({
                   })
                 }
                 key={c}
-                className={`${isSelected} ml-1 rounded-full px-4 py-2 text-slate-800 font-bold cursor-pointer`}
+                className={`${isSelected} ml-1 rounded-full px-4 py-2 font-bold cursor-pointer`}
               >
                 {c}
               </p>
@@ -117,7 +121,9 @@ export const ProductDetailsOptions = ({
         </div>
 
         <div className="flex items-center mb-3">
-          <span className="text-slate-200 font-bold mr-3">Sizes:</span>
+          <span className="text-slate-800 dark:text-slate-200 font-bold mr-3">
+            Sizes:
+          </span>
           <div>
             <select
               onChange={(e) =>
@@ -126,7 +132,7 @@ export const ProductDetailsOptions = ({
                   size: e.target.value,
                 })
               }
-              className="block w-full text-sm text-white rounded-lg bg-slate-800 font-bold p-1 cursor-pointer"
+              className="block w-full text-sm text-slate-200 dark:text-slate-800 rounded-lg bg-slate-800 dark:bg-slate-200 font-bold p-1 cursor-pointer"
             >
               {product?.sizes.map((s) => {
                 return <option key={s}>{s}</option>;
@@ -136,15 +142,19 @@ export const ProductDetailsOptions = ({
         </div>
 
         <div className="flex flex-wrap items-center font-bold">
-          <span className="text-slate-200 mr-3">Materials:</span>
-          <div className="text-slate-800">{product?.materials.join("/")}</div>
+          <span className="text-slate-800 mr-3 dark:text-slate-200">
+            Materials:
+          </span>
+          <div className="text-slate-800 dark:text-slate-200">
+            {product?.materials.join("/")}
+          </div>
         </div>
       </div>
 
-      <hr className="w-full h-1 border-0 rounded mb-8 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+      <hr className="w-full h-1 border-0 rounded mb-8 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg" />
 
       <div className="flex items-center flex-col md:flex-row">
-        <span className="text-2xl text-slate-200 font-bold">
+        <span className="text-2xl text-slate-800 dark:text-slate-200 font-bold">
           ${product?.price}
         </span>
 

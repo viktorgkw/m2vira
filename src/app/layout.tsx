@@ -5,8 +5,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { Toast } from "./components/Toast";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
+import Theme from "./ThemeProvider";
+import { NextAuthProvider } from "./AuthProvider";
 import "./globals.css";
-import { NextAuthProvider } from "./Providers";
 
 const font = Varela_Round({
   weight: "400",
@@ -33,23 +34,25 @@ export default function RootLayout({
       <body
         className={
           font.className +
-          " scrollbar-thin scrollbar-rounded-lg scrollbar-track-slate-300 scrollbar-thumb-slate-800"
+          " scrollbar-thin scrollbar-rounded-lg dark:scrollbar-track-slate-300 dark:scrollbar-thumb-slate-800 scrollbar-track-slate-800 scrollbar-thumb-slate-300"
         }
       >
         <NextAuthProvider>
-          <div className="items-center">
-            <Toast />
-          </div>
+          <Theme>
+            <div className="items-center">
+              <Toast />
+            </div>
 
-          <NavBar />
+            <NavBar />
 
-          <main className="min-h-screen py-3 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">
-            {children}
-            <SpeedInsights />
-            <Analytics />
-          </main>
+            <main className="min-h-screen py-3 bg-gradient-to-r dark:from-indigo-500 dark:via-sky-500 dark:to-emerald-500 from-indigo-400 via-purple-400 to-pink-400">
+              {children}
+              <SpeedInsights />
+              <Analytics />
+            </main>
 
-          <Footer />
+            <Footer />
+          </Theme>
         </NextAuthProvider>
       </body>
     </html>

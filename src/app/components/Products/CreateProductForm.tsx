@@ -99,35 +99,37 @@ export const CreateProductForm = () => {
       setProduct({ ...product, image: e.target.files[0] });
     }
   };
+
   return (
-    <div className="flex flex-col items-center rounded-lg md:py-14 md:px-24 bg-gray-800 border-gray-700 bg-opacity-70 my-4 px-1 py-6">
-      <h1 className="text-4xl md:text-5xl font-bold text-slate-200 drop-shadow-lg">
+    <div className="flex flex-col items-center rounded-lg md:py-14 md:px-24 dark:bg-slate-800 dark:bg-opacity-70 my-4 px-1 py-6 bg-slate-200 bg-opacity-70">
+      <h1 className="text-4xl md:text-5xl font-bold dark:text-slate-200 text-slate-800 drop-shadow-lg">
         Add new
       </h1>
-      <hr className="w-48 h-1 mx-auto my-4 border-0 rounded mt-5 mb-12 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <hr className="w-48 h-1 mx-auto my-4 border-0 rounded mt-5 mb-12 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 drop-shadow-lg from-slate-800 via-slate-700 to-slate-800" />
+
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Image
       </label>
       <input
-        className="block mb-5 text-xs md:text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="file"
         accept="image/png"
         onChange={(e) => handleImageChange(e)}
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Title
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="text"
         value={product.title}
         onChange={(e) => setProduct({ ...product, title: e.target.value })}
         placeholder="Title"
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Description
       </label>
       <textarea
@@ -137,15 +139,15 @@ export const CreateProductForm = () => {
         }
         rows={textareaRows}
         cols={textareaCols}
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg resize-none md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800 resize-none"
         placeholder="Description"
       ></textarea>
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Price
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="number"
         min={0.1}
         step={0.1}
@@ -156,44 +158,44 @@ export const CreateProductForm = () => {
         placeholder="Price"
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Sizes
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="text"
         value={product.sizes}
         onChange={(e) => setProduct({ ...product, sizes: e.target.value })}
         placeholder="Use separator ,"
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Colors
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="text"
         value={product.colors}
         onChange={(e) => setProduct({ ...product, colors: e.target.value })}
         placeholder="Use separator ,"
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Materials
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="text"
         value={product.materials}
         onChange={(e) => setProduct({ ...product, materials: e.target.value })}
         placeholder="Use separator ,"
       />
 
-      <label className="text-slate-100 font-bold text-lg md:text-xl drop-shadow-lg">
+      <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
         Tags
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 text-slate-700 drop-shadow-lg md:w-96 w-fit"
+        className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="text"
         value={product.tags}
         onChange={(e) => setProduct({ ...product, tags: e.target.value })}
@@ -202,7 +204,7 @@ export const CreateProductForm = () => {
 
       <button
         onClick={create}
-        className="bg-gradient-to-r from-slate-300 via-slate-100 to-slate-300 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 text-gray-900 font-bold py-2 px-4 rounded mt-6 mb-3 disabled:opacity-25"
+        className="bg-gradient-to-r dark:from-slate-300 dark:via-slate-100 dark:to-slate-300 from-slate-800 via-slate-700 to-slate-800 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 dark:text-slate-800 text-slate-200 font-bold py-2 px-4 rounded mt-6 mb-3 disabled:opacity-25"
         disabled={isDisabled}
       >
         Create

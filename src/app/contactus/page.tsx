@@ -39,7 +39,7 @@ export default function ContactUs() {
 
   return (
     <div className="flex justify-center items-center mt-4">
-      <div className="py-8 px-8 max-w-screen-md text-slate-800 bg-white bg-opacity-75 rounded-xl mx-2">
+      <div className="py-8 px-8 max-w-screen-md text-slate-800 dark:text-slate-200 bg-slate-200 dark:bg-slate-800 bg-opacity-75 dark:bg-opacity-75 rounded-xl mx-2">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center">
           Contact Us
         </h2>
@@ -52,7 +52,7 @@ export default function ContactUs() {
           <label className="block mb-2 text-lg font-medium">Your email</label>
           <input
             onChange={(e) => setFrom(e.target.value)}
-            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800"
+            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 dark:text-slate-200 dark:bg-slate-800"
             placeholder="example@domain.com"
           />
         </div>
@@ -61,7 +61,7 @@ export default function ContactUs() {
           <label className="block mb-2 text-lg font-medium">Subject</label>
           <input
             onChange={(e) => setSubject(e.target.value)}
-            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800"
+            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 dark:text-slate-200 dark:bg-slate-800"
             placeholder="How can we help you?"
           />
         </div>
@@ -70,7 +70,7 @@ export default function ContactUs() {
           <textarea
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
-            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 resize-none"
+            className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 dark:text-slate-200 resize-none dark:bg-slate-800"
             placeholder="Leave your message here..."
           ></textarea>
         </div>

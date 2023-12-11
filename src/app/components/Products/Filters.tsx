@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Filters = ({ setGender, setSize, setSearchTerm }: any) => {
   return (
-    <div className="bg-white bg-opacity-75 rounded-xl px-10 py-6 mx-3 md:mx-0 mt-4">
-      <div className="flex flex-col items-center justify-center text-slate-800 font-bold">
+    <div className="bg-slate-200 dark:bg-slate-800 bg-opacity-75 dark:bg-opacity-75 rounded-xl px-10 py-6 mx-3 md:mx-0 mt-4">
+      <div className="flex flex-col items-center justify-center text-slate-800 dark:text-slate-200 font-bold">
         <p className="text-xl mb-2">Gender</p>
 
         <div
@@ -32,9 +32,9 @@ export const Filters = ({ setGender, setSize, setSearchTerm }: any) => {
         </div>
       </div>
 
-      <hr className="w-40 h-1 mx-auto border-0 rounded bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 drop-shadow-lg my-5" />
+      <hr className="w-40 h-1 mx-auto border-0 rounded bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 drop-shadow-lg my-5 dark:from-slate-400 dark:via-slate-300 dark:to-slate-400" />
 
-      <div className="flex flex-col items-center justify-center text-slate-800 font-bold">
+      <div className="flex flex-col items-center justify-center text-slate-800 dark:text-slate-200 font-bold">
         <p className="text-xl mb-2">Size</p>
 
         <div className="flex flex-row flex-wrap">

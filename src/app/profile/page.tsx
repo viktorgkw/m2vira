@@ -40,9 +40,9 @@ export default function ProfilePage() {
       {!session?.user ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 antialiased">
+        <div className="flex flex-col items-center justify-center min-h-screen antialiased">
           <div className="container mx-auto">
-            <div className="pb-3 relative shadow-2xl rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto bg-gradient-to-r from-slate-950 via-slate-800 to-slate-950 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500">
+            <div className="pb-3 relative shadow-2xl rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto bg-gradient-to-r dark:from-slate-950 dark:via-slate-800 dark:to-slate-950 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 from-indigo-200 via-purple-200 to-pink-200">
               <div className="flex justify-center">
                 <Image
                   src={session?.user?.image ?? "/avatar.png"}
@@ -55,18 +55,20 @@ export default function ProfilePage() {
               </div>
 
               <div className="mt-16">
-                <div className="flex flex-row justify-center items-center font-bold text-3xl text-slate-300 mb-2">
+                <div className="flex flex-row justify-center items-center font-bold text-3xl dark:text-slate-300 text-slate-800 mb-2">
                   <h1 className="mx-1 text-center">{session?.user?.name}</h1>
                 </div>
 
-                <p className="text-center text-sm text-slate-400">
+                <p className="text-center text-sm dark:text-slate-400 text-slate-950">
                   {session?.user?.email}
                 </p>
 
-                <hr className="w-48 h-1 mx-auto my-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-400 via-slate-300 to-slate-400 drop-shadow-lg" />
+                <hr className="w-48 h-1 mx-auto my-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r dark:from-slate-400 dark:via-slate-300 dark:to-slate-400 from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg" />
 
                 <div className="text-center mt-5">
-                  <h1 className="text-2xl text-slate-300">Orders</h1>
+                  <h1 className="text-2xl dark:text-slate-300 text-slate-800">
+                    Orders
+                  </h1>
 
                   {orders.length === 0 ? (
                     <div className="text-red-500 flex justify-center items-center">
@@ -75,10 +77,12 @@ export default function ProfilePage() {
                         width={16}
                         height={16}
                       />
-                      <p className="ml-1 text-slate-200">No orders yet!</p>
+                      <p className="ml-1 dark:text-slate-300 text-slate-800">
+                        No orders yet!
+                      </p>
                     </div>
                   ) : (
-                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                    <div className="px-4 sm:px-8 py-4 overflow-x-auto">
                       <div className="inline-block max-w-fit shadow rounded-lg overflow-hidden">
                         <table className="min-w-full leading-normal">
                           <thead>

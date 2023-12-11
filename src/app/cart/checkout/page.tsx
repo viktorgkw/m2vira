@@ -38,16 +38,16 @@ export default function Cart() {
         <Loading />
       ) : (
         <div className="flex flex-col justify-center items-center">
-          <Image
-            src="/gifs/successtick.gif"
-            height={256}
-            width={256}
-            alt="Success gif"
-            unoptimized={true}
-          />
+          <div className="flex flex-col justify-center items-center dark:bg-slate-800 dark:bg-opacity-75 px-6 py-6 rounded-xl mx-2 bg-slate-200 bg-opacity-75">
+            <Image
+              src="/gifs/successtick.gif"
+              height={256}
+              width={256}
+              alt="Success gif"
+              unoptimized={true}
+            />
 
-          <div className="flex flex-col justify-center items-center bg-white bg-opacity-75 px-4 py-6 rounded-xl mx-2">
-            <p className="uppercase text-2xl md:text-4xl text-emerald-400 font-bold text-center">
+            <p className="uppercase text-2xl md:text-4xl text-emerald-400 font-bold text-center mb-8">
               Checkout was successful!
             </p>
 

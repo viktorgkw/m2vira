@@ -3,10 +3,11 @@ import { Section } from "../components/Privacy/Section";
 
 export default function Policy() {
   return (
-    <div className="text-slate-800 min-h-screen bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col justify-center items-center my-4">
-      <div className="flex flex-col justify-center items-center bg-white bg-opacity-75 px-3 py-5 rounded-xl mx-2">
+    <div className="text-slate-800 min-h-screen flex flex-col justify-center items-center my-4">
+      <div className="flex flex-col justify-center items-center dark:bg-slate-800 bg-slate-200 bg-opacity-75 px-3 py-5 rounded-xl mx-2 text-slate-800 dark:text-slate-200">
         <h1 className="text-3xl md:text-5xl font-bold mt-3">Privacy Policy</h1>
-        <hr className="w-48 md:w-72 h-1 border-0 rounded mt-5 mb-12 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg" />
+
+        <hr className="w-48 md:w-72 h-1 border-0 rounded mt-5 mb-12 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg dark:from-slate-400 dark:via-slate-300 dark:to-slate-400" />
 
         <div className="prose max-w-none flex flex-col justify-center items-center break-words">
           <Section

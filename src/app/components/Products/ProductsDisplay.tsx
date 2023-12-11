@@ -40,6 +40,7 @@ export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
 
     setFilteredProducts(filtered);
   }, [searchTerm, gender, products, size]);
+
   return (
     <>
       <Filters
@@ -49,7 +50,7 @@ export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
       />
 
       {filteredProducts.length === 0 ? (
-        <div className="mt-16">
+        <div className="mt-16 bg-slate-200 dark:bg-slate-800 bg-opacity-75 dark:bg-opacity-75 px-6 py-4 rounded-xl">
           <p className="font-bold text-red-500 text-2xl md:text-3xl text-center">
             No products found that match your search!
           </p>

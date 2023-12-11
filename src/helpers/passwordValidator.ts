@@ -34,15 +34,3 @@ export const validateInputs = (user: any) => {
     isPasswordComplex && isEmailValid && isUsernameValid && isCommonPasswords
   );
 };
-
-export const validateCardData = (data: any) => {
-  return (
-    data.fullName.trim().length === 0 ||
-    data.fullAddress.trim().length < 16 ||
-    !data.cardNumber.match(/^\d{4}-\d{4}-\d{4}-\d{4}$/) ||
-    !data.expireDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/) ||
-    isNaN(data.CVC) ||
-    data.CVC.toString().length < 3 ||
-    data.CVC.toString().length > 4
-  );
-};

@@ -18,7 +18,7 @@ export default function Home() {
       <section className="">
         <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto mt-16 mb-24">
           <div className="w-full md:w-1/2 py-8">
-            <div className="flex flex-col uppercase text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900">
+            <div className="flex flex-col uppercase text-center text-slate-200 dark:text-blue-950">
               <p className="text-4xl md:text-6xl mb-4">Welcome</p>
               <p className="text-xl md:text-2xl mb-4">to</p>
               <p className="text-4xl md:text-6xl mb-4">m2vira</p>
@@ -47,8 +47,8 @@ export default function Home() {
             height={256}
           />
 
-          <figcaption className="absolute px-4 text-sm md:text-2xl top-10 right-0 left-0 bg-black py-4 bg-opacity-50 flex justify-center">
-            <p className="uppercase font-bold text-white text-center">
+          <figcaption className="absolute px-4 text-sm md:text-2xl top-10 right-0 left-0 bg-white dark:bg-black py-4 bg-opacity-25 dark:bg-opacity-50 flex justify-center">
+            <p className="uppercase font-bold text-dark dark:text-white text-center">
               {"Refresh your wardrobe with our fancy collections"}
             </p>
           </figcaption>
@@ -63,29 +63,29 @@ export default function Home() {
             height={256}
           />
 
-          <figcaption className="absolute px-4 text-sm md:text-2xl top-10 right-0 left-0 bg-black py-4 bg-opacity-50 flex justify-center">
-            <p className="uppercase font-bold text-white text-center">
+          <figcaption className="absolute px-4 text-sm md:text-2xl top-10 right-0 left-0 bg-white dark:bg-black py-4 bg-opacity-25 dark:bg-opacity-50 flex justify-center">
+            <p className="uppercase font-bold text-dark dark:text-white text-center">
               {"We add new collections every month"}
             </p>
           </figcaption>
         </figure>
       </div>
 
-      <div className="text-center bg-slate-800 bg-opacity-75 px-2 py-8 mb-6 rounded-xl md:rounded-none mx-2 md:mx-0">
-        <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-slate-200 sm:text-4xl">
+      <div className="text-center bg-slate-200 bg-opacity-75 dark:bg-slate-800 dark:bg-opacity-75 px-2 py-8 mb-6 rounded-xl md:rounded-none mx-2 md:mx-0 dark:text-slate-200 text-slate-800">
+        <h2 className="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl">
           Sign up for our newsletter
         </h2>
 
-        <p className="mx-auto mb-8 max-w-2xl font-light text-slate-300 sm:text-xl">
+        <p className="mx-auto mb-8 max-w-2xl font-light sm:text-xl">
           Stay up to date with the roadmap progress, announcements and exclusive
           discounts feel free to sign up with your email.
         </p>
 
-        <div className="items-center flex justify-center mb-3 text-sky-500">
+        <div className="items-center flex justify-center mb-3 dark:text-slate-200">
           <input
-            className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-slate-700 drop-shadow-lg text-sm md:px-4 md:py-3"
+            className="p-2 border border-none rounded-lg focus:outline-none dark:text-slate-200 text-slate-800 drop-shadow-lg text-sm md:px-4 md:py-3"
             type="text"
-            placeholder="Your Email"
+            placeholder="example@domain.com"
           />
 
           <button
