@@ -151,15 +151,8 @@ export default function Cart() {
               </span>
               <button
                 disabled={checkoutDisabled}
-                onClick={() =>
-                  checkout({
-                    lineItems: [
-                      {
-                        price: "price_1OLruHIZzuSRsj5vuTGSzjcR",
-                        quantity: 1,
-                      },
-                    ],
-                  })
+                onClick={async () =>
+                  router.push(await checkout({ cartTotal: subtotal }))
                 }
                 className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50"
               >

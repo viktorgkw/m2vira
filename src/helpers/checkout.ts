@@ -1,24 +1,40 @@
-import { loadStripe } from "@stripe/stripe-js";
+import Stripe from "stripe";
 
-export async function checkout({ lineItems }: any) {
-  let stripePromise: any = null;
+export async function checkout({
+  cartTotal,
+}: {
+  cartTotal: number;
+}): Promise<string> {
+  const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 
-  const getStripe = () => {
-    if (!stripePromise) {
-      stripePromise = loadStripe(
-        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-      );
-
-      return stripePromise;
-    }
-  };
-
-  const stripe = await getStripe();
-
-  await stripe.redirectToCheckout({
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Your m2vira Order",
+          },
+          unit_amount: cartTotal * 100,
+        },
+        quantity: 1,
+      },
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Shipping",
+          },
+          unit_amount: 899,
+        },
+        quantity: 1,
+      },
+    ],
     mode: "payment",
-    lineItems,
-    successUrl: "https://m2vira.vercel.app/cart/checkout",
-    cancelUrl: "https://m2vira.vercel.app/cart/mine",
+    success_url: "https://m2vira.vercel.app/cart/checkout",
+    cancel_url: "https://m2vira.vercel.app/cart/mine",
   });
+
+  return session.url!;
 }
