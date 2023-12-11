@@ -1,4 +1,4 @@
-import { storage } from "@/firebase";
+import { storage } from "@/helpers/firebase";
 import {
   deleteObject,
   getDownloadURL,
