@@ -31,6 +31,6 @@ export const config = {
     "/api/products/create",
     "/api/products/edit",
     "/products/create",
-    "/products/edit",
+    "/products/edit/:path*",
   ],
 };
