@@ -11,16 +11,35 @@ import {
   faUserPlus,
   faSun,
   faMoon,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { signIn, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 config.autoAddCss = false;
 
 export const NavBar = () => {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const { theme, setTheme } = useTheme();
+
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("https://m2vira.vercel.app/api/permissions", {
+        method: "POST",
+        body: JSON.stringify({ email: session?.user?.email }),
+      });
+
+      const data = await res.json();
+
+      setIsAdmin(data.isAdmin);
+    };
+
+    fetchData();
+  }, [session]);
 
   return (
     <nav className="py-4 px-4 bg-gradient-to-r dark:from-slate-950 dark:via-slate-800 dark:to-slate-950 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 from-indigo-200 via-purple-200 to-pink-200">
@@ -46,6 +65,18 @@ export const NavBar = () => {
                 <p className="font-semibold">Fashion</p>
               </Link>
             </li>
+
+            {isAdmin && (
+              <li className="mx-3 hover:text-fuchsia-500">
+                <Link
+                  href="/admin/home"
+                  className="flex flex-col justify-center items-center"
+                >
+                  <FontAwesomeIcon icon={faLock} width="24" height="24" />
+                  <p className="font-semibold">Admin-Panel</p>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="right-links mt-4 md:mt-0">

@@ -32,5 +32,6 @@ export const config = {
     "/api/products/edit",
     "/products/create",
     "/products/edit/:path*",
+    "/admin/home",
   ],
 };
