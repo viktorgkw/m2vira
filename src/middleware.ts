@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(req: NextRequest) {
   const sessionToken =
-    req.cookies.get("next-auth.session-token")?.value || null;
+    req.cookies.get("__Secure-next-auth.session-token")?.value || null;
 
   if (sessionToken === null) {
     return NextResponse.redirect(new URL("/", req.url));

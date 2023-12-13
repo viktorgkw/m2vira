@@ -67,7 +67,7 @@ export const EditProductForm = ({ id }: any) => {
     setIsBtnDisabled(true);
 
     try {
-      const res = await fetch("/api/products/edit", {
+      const res = await fetch("https://m2vira.vercel.app/api/products/edit", {
         method: "POST",
         body: JSON.stringify(product),
       });
