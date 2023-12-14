@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Product from "@/models/productModel";
-import { connect } from "@/dbConfig/dbConfig";
+import { connect } from "@/helpers/mongoDB";
 import Favorites from "@/models/favoritesModel";
 
 export async function POST(request: NextRequest) {

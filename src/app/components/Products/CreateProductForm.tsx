@@ -1,6 +1,6 @@
 "use client";
 
-import { addImage } from "@/helpers/firebaseStorage";
+import { addImage } from "@/helpers/storage";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";

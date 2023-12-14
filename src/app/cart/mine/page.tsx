@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { getImage } from "@/helpers/firebaseStorage";
-import { checkout } from "@/helpers/checkout";
+import { getImage } from "@/helpers/storage";
+import { checkout } from "@/helpers/stripe";
 import { CartProduct } from "../../components/Cart/CartProduct";
 
 type Product = {

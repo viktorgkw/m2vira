@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { getImage } from "@/helpers/firebaseStorage";
+import { getImage } from "@/helpers/storage";
 import { ProductDetailsOptions } from "@/app/components/Products/ProductDetailsOptions";
 
 config.autoAddCss = false;
