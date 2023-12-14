@@ -20,7 +20,7 @@ export default function AdminPanel() {
           icon={faUserMinus}
           iconColor="text-red-600"
           text="Delete user"
-          link={"/admin/manage/users"}
+          link={"/admin/users"}
         />
 
         <AdminOptionCard

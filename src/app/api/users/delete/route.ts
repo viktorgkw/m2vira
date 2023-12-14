@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import Product from "@/models/productModel";
 import { connect } from "@/dbConfig/dbConfig";
-import Favorites from "@/models/favoritesModel";
+import User from "@/models/userModel";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,18 +9,17 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { _id } = body;
 
-    if (!(await Product.findOne({ _id: _id }))) {
+    if (!(await User.findOne({ _id: _id }))) {
       return NextResponse.json({
-        message: "Product was not found!",
+        message: "User was not found!",
         status: 404,
       });
     }
 
-    await Favorites.deleteMany({ productId: _id });
-    await Product.deleteOne({ _id: _id });
+    await User.deleteOne({ _id: _id });
 
     return NextResponse.json({
-      message: "Product deleted successfully!",
+      message: "User deleted successfully!",
       status: 200,
     });
   } catch (err: any) {
