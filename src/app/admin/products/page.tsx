@@ -54,3 +54,5 @@ export default async function AdminProducts() {
     </>
   );
 }
+
+export const dynamic = "force-dynamic";
