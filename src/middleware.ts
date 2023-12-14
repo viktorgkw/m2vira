@@ -33,5 +33,6 @@ export const config = {
     "/products/create",
     "/products/edit/:path*",
     "/admin/home",
+    "/admin/products",
   ],
 };

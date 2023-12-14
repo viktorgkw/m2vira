@@ -34,14 +34,14 @@ export default function AdminPanel() {
           icon={faTrashCan}
           iconColor="text-rose-600"
           text="Delete product"
-          link={"/admin/manage/products"}
+          link={"/admin/products"}
         />
 
         <AdminOptionCard
           icon={faPenToSquare}
           iconColor="text-indigo-600"
           text="Edit product"
-          link={"/admin/manage/products"}
+          link={"/admin/products"}
         />
       </div>
     </>
