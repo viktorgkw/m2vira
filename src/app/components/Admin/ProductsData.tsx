@@ -38,19 +38,19 @@ export const ProductsData = ({ products }: any) => {
           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <Link
               href={`/products/details/${p._id}`}
-              className="px-3 py-2 text-sm text-center text-white bg-slate-700 rounded-lg hover:bg-slate-800 focus:outline-none font-medium mx-1"
+              className="px-3 py-2 text-sm text-center text-white bg-slate-700 rounded-lg hover:bg-slate-800 focus:outline-none font-medium mx-1 my-2 md:my-0"
             >
               Details
             </Link>
             <Link
               href={`/products/edit/${p._id}`}
-              className="px-3 py-2 text-sm text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:outline-none font-medium mx-1"
+              className="px-3 py-2 text-sm text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:outline-none font-medium mx-1 my-2 md:my-0"
             >
               Edit
             </Link>
             <button
               onClick={() => deleteProduct(p._id)}
-              className="px-3 py-2 text-sm text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none font-medium mx-1"
+              className="px-3 py-2 text-sm text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none font-medium mx-1 my-2 md:my-0"
             >
               Delete
             </button>

@@ -22,9 +22,9 @@ export default async function AdminProducts() {
       </div>
 
       {res.products.length > 0 ? (
-        <div className="overflow-x-auto flex justify-center">
-          <div className="inline-block max-w-fit drop-shadow-xl rounded-lg overflow-hidden">
-            <table className="leading-normal w-auto ">
+        <div className="px-4 sm:px-8 py-4 overflow-x-auto md:flex md:justify-center">
+          <div className="inline-block max-w-fit shadow rounded-lg overflow-hidden">
+            <table className="leading-normal w-auto">
               <thead>
                 <tr>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">

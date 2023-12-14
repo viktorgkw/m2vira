@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
     const splittedSizes: string[] = sizes.split(",");
     const splittedColors: string[] = colors.split(",");
     const splittedTags: string[] = tags.split(",");
-    const tl = "";
 
     const newProduct = new Product({
       title: title.trim(),
