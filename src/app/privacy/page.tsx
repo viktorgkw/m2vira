@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Section } from "../components/Privacy/Section";
 
 export default function Policy() {
