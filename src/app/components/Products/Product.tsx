@@ -11,9 +11,9 @@ export const Product = ({ product }: any) => {
         <div className="relative">
           <Image
             src={product.images[0]}
-            alt="Dress"
-            width={512}
-            height={512}
+            alt="Product"
+            width={320}
+            height={410}
             priority
           />
 

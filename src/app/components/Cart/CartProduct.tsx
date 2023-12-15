@@ -6,18 +6,44 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 config.autoAddCss = false;
 
-export const CartProduct = ({ product, removeFromCart }: any) => {
+type Product = {
+  id: string;
+  title: string;
+  price: number;
+  color: string;
+  size: string;
+  images: string[];
+};
+
+export const CartProduct = ({
+  product,
+  removeFromCart,
+}: {
+  product: Product;
+  removeFromCart: any;
+}) => {
   return (
     <li key={product.id} className="flex flex-row md:flex-col">
       <div className="flex">
-        <Link href={`/products/details/${product.id}`}>
-          <Image
-            src={product.images[0]}
-            width={128}
-            height={128}
-            alt="Product"
-          />
-        </Link>
+        {product.images.length !== 0 ? (
+          <Link href={`/products/details/${product.id}`}>
+            <Image
+              src={product.images[0]}
+              width={128}
+              height={128}
+              alt="Product"
+            />
+          </Link>
+        ) : (
+          <div className="flex justify-center items-center">
+            <div
+              className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mr-3"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"></span>
+            </div>
+          </div>
+        )}
 
         <div className="flex flex-col justify-between w-full pb-4 text-slate-800">
           <div className="flex justify-between w-full pb-2 space-x-2">
