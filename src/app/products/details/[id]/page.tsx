@@ -19,8 +19,6 @@ export default async function ProductDetails({ params }: any) {
     redirect("/products/all");
   }
 
-  const image = await getImage(data.product.title);
-
   return (
     <>
       <section className="body-font overflow-hidden">
@@ -32,7 +30,7 @@ export default async function ProductDetails({ params }: any) {
               height={2048}
               alt="Product Image"
               className="lg:w-1/2 w-full object-cover object-center rounded hover:scale-[1.03] duration-300"
-              src={image}
+              src={data.product.images[0]}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm text-slate-800 dark:text-slate-200 tracking-widest">
@@ -49,6 +47,12 @@ export default async function ProductDetails({ params }: any) {
 
               <ProductDetailsOptions product={data.product} />
             </div>
+          </div>
+
+          <div>
+            {data.product.images.map((i: any) => (
+              <>{i}</>
+            ))}
           </div>
         </div>
       </section>

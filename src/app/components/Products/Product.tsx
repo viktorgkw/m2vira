@@ -29,8 +29,6 @@ export const Product = ({ product }: any) => {
           ${product.price}
         </p>
       </div>
-
-      {product.images.length}
     </div>
   );
 };
