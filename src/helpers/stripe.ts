@@ -36,7 +36,7 @@ export async function checkout({
       product_data: {
         name: "Shipping",
         images: [
-          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Dshipping&psig=AOvVaw3iuvjDtZ2UqRmX3Ow8M_nJ&ust=1702747654042000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIDfp737kYMDFQAAAAAdAAAAABAD",
+          "https://firebasestorage.googleapis.com/v0/b/m2vira-storage.appspot.com/o/shipping.png?alt=media&token=b3f51ad8-e881-4b55-917e-eb5f2c086ac3",
         ],
       },
       unit_amount: 899,
