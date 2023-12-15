@@ -43,6 +43,7 @@ export default function ContactUs() {
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center">
           Contact Us
         </h2>
+
         <p className="mb-5 font-light text-center sm:text-xl">
           Got a technical issue? Want to send feedback about a beta feature?
           Need details about our Business plan? Let us know.
@@ -50,6 +51,7 @@ export default function ContactUs() {
 
         <div className="my-3">
           <label className="block mb-2 text-lg font-medium">Your email</label>
+
           <input
             onChange={(e) => setFrom(e.target.value)}
             className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 dark:text-slate-200 dark:bg-slate-800"
@@ -59,14 +61,17 @@ export default function ContactUs() {
 
         <div className="my-3">
           <label className="block mb-2 text-lg font-medium">Subject</label>
+
           <input
             onChange={(e) => setSubject(e.target.value)}
             className="shadow-sm text-sm rounded-lg block w-full p-2.5 text-slate-800 dark:text-slate-200 dark:bg-slate-800"
             placeholder="How can we help you?"
           />
         </div>
+
         <div className="my-3">
           <label className="block mb-2 text-lg font-medium">Your message</label>
+
           <textarea
             onChange={(e) => setMessage(e.target.value)}
             rows={4}

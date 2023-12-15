@@ -97,6 +97,7 @@ export const ProductDetailsOptions = ({
           <span className="mr-3 text-slate-800 dark:text-slate-200 font-bold">
             Colors:
           </span>
+
           {product?.colors.map((c) => {
             const isSelected =
               c === productState.color
@@ -124,6 +125,7 @@ export const ProductDetailsOptions = ({
           <span className="text-slate-800 dark:text-slate-200 font-bold mr-3">
             Sizes:
           </span>
+
           <div>
             <select
               onChange={(e) =>
@@ -145,6 +147,7 @@ export const ProductDetailsOptions = ({
           <span className="text-slate-800 mr-3 dark:text-slate-200">
             Materials:
           </span>
+
           <div className="text-slate-800 dark:text-slate-200">
             {product?.materials.join("/")}
           </div>

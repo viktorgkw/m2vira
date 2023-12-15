@@ -99,12 +99,14 @@ export const EditProductForm = ({ id }: any) => {
       <h1 className="text-4xl md:text-5xl font-bold dark:text-slate-200 text-slate-800 drop-shadow-lg">
         Edit
       </h1>
+
       <hr className="w-32 h-1 mx-auto my-4 border-0 rounded mt-5 mb-12 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 drop-shadow-lg from-slate-800 via-slate-700 to-slate-800" />
 
       <>
         <label className="dark:text-slate-200 text-slate-800  font-bold text-lg md:text-xl drop-shadow-lg">
           Title
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200 bg-slate-800 text-slate-200"
           type="text"
@@ -116,6 +118,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800  font-bold text-lg md:text-xl drop-shadow-lg">
           Description
         </label>
+
         <textarea
           value={product?.description}
           onChange={(e) => handleInputChange("description", e.target.value)}
@@ -128,6 +131,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
           Price
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200 bg-slate-800 text-slate-200"
           type="number"
@@ -141,6 +145,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
           Sizes
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200 bg-slate-800 text-slate-200"
           type="text"
@@ -154,6 +159,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
           Colors
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 bg-slate-800 text-slate-200 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200"
           type="text"
@@ -167,6 +173,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
           Materials
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 bg-slate-800 text-slate-200 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200"
           type="text"
@@ -180,6 +187,7 @@ export const EditProductForm = ({ id }: any) => {
         <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
           Tags
         </label>
+
         <input
           className="p-2 rounded-lg mb-4 bg-slate-800 text-slate-200 dark:text-slate-800 drop-shadow-lg md:w-96 w-fit outline-none dark:bg-slate-200"
           type="text"

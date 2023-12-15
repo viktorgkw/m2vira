@@ -8,9 +8,11 @@ export const InfoCard = ({ icon, value, text }: any) => {
           icon={icon}
           className="w-10 h-10 text-slate-800 dark:text-slate-200"
         />
+
         <p className="mt-4 mb-2 text-3xl font-bold text-slate-800 dark:text-slate-200">
           {value}
         </p>
+
         <h2 className="text-sm text-slate-800 dark:text-slate-200">{text}</h2>
       </div>
     </div>

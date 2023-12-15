@@ -24,6 +24,7 @@ export default function Home() {
               <p className="text-4xl md:text-6xl mb-4">m2vira</p>
             </div>
           </div>
+
           <div className="w-full md:w-1/2 py-8 px-2 md:px-0">
             <Image
               src="/images/welcome.jpg"

@@ -17,12 +17,14 @@ export const Filters = ({ setGender, setSize, setSearchTerm }: any) => {
           >
             <FontAwesomeIcon icon={faBan} width={24} height={24} />
           </button>
+
           <button
             onClick={() => setGender("women")}
             className="flex px-2 py-2 bg-rose-500 hover:bg-rose-400 text-white font-bold border-b-4 border-rose-800 hover:border-rose-600 rounded hover:scale-[1.05] duration-300 mx-2"
           >
             <FontAwesomeIcon icon={faVenus} width={24} height={24} />
           </button>
+
           <button
             onClick={() => setGender("men")}
             className="flex px-2 py-2 bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-800 hover:border-blue-600 rounded hover:scale-[1.05] duration-300 mx-2"

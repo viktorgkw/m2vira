@@ -133,6 +133,7 @@ export default function Cart() {
                 ${subtotal.toFixed(2)}
               </span>
             </p>
+
             <p className="text-sm font-bold text-red-500">
               Not including taxes and shipping costs
             </p>
@@ -149,6 +150,7 @@ export default function Cart() {
               <span className="tooltip rounded-xl shadow-lg bg-opacity-75 bg-white mt-12 px-2 py-1">
                 Test Card: 4242-4242-4242-4242
               </span>
+
               <button
                 disabled={checkoutDisabled}
                 onClick={async () =>

@@ -31,14 +31,17 @@ export const UsersData = ({ users }: any) => {
               <p className="whitespace-no-wrap text-violet-600">{u.username}</p>
             </div>
           </td>
+
           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <p className="whitespace-no-wrap text-emerald-600">{u.email}</p>
           </td>
+
           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <p className="whitespace-no-wrap text-emerald-600">
               {u.isAdmin ? "Yes" : "No"}
             </p>
           </td>
+
           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <button
               onClick={() => deleteUser(u._id)}

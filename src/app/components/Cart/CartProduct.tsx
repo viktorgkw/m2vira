@@ -41,6 +41,7 @@ export const CartProduct = ({ product, removeFromCart }: any) => {
               </p>
             </div>
           </div>
+
           <div className="flex text-sm divide-x">
             <button
               onClick={() => removeFromCart(product.id)}

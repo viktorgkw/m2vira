@@ -26,11 +26,13 @@ export default function AboutUs() {
                     m2vira
                   </h1>
                 </div>
+
                 <p className="px-4 mb-10 text-base leading-7 text-slate-800 dark:text-slate-200">
                   {
                     "Welcome to m2vira, where fashion meets individuality. At m2vira, we believe that clothing is more than just a way to cover the body it's a statement, an expression of your unique self. Our brand is built on the foundation of celebrating diversity, empowering confidence, and curating styles that resonate with the modern trendsetter."
                   }
                 </p>
+
                 <div className="flex flex-wrap items-center">
                   <InfoCard
                     icon={faUserTie}
@@ -58,6 +60,7 @@ export default function AboutUs() {
                 </div>
               </div>
             </div>
+
             <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
               <Image
                 src="/images/aboutus-image.jpg"

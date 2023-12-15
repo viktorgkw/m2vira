@@ -21,6 +21,7 @@ export const Footer = () => {
                 className="cursor-default bg-transparent"
                 alt="Website logo"
               />
+
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-slate-800 dark:text-slate-200 cursor-default">
                 m2vira
               </span>
@@ -31,6 +32,7 @@ export const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold uppercase text-indigo-500 cursor-default">
                 m2vira
               </h2>
+
               <ul className="font-medium">
                 <li className="mb-4 text-slate-800 dark:text-slate-200 hover:text-white">
                   <Link href="/aboutus">About Us</Link>
@@ -41,6 +43,7 @@ export const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold uppercase text-sky-500 cursor-default">
                 Contacts
               </h2>
+
               <ul className="font-medium">
                 <li className="text-slate-800 dark:text-slate-200 hover:text-white">
                   <Link href="/contactus">Contact Us</Link>
@@ -51,6 +54,7 @@ export const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold uppercase text-emerald-400 cursor-default">
                 Legal
               </h2>
+
               <ul className="font-medium">
                 <li className="mb-4 text-slate-800 dark:text-slate-200 hover:text-white">
                   <Link href="/privacy">Privacy Policy</Link>
@@ -72,6 +76,7 @@ export const Footer = () => {
             {"  "}
             All Rights Reserved.
           </span>
+
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
             <a href="https://www.discord.com">
               <svg
@@ -85,6 +90,7 @@ export const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
+
             <a href="https://www.github.com">
               <svg
                 className="w-4 h-4 text-slate-800 dark:text-slate-200 hover:text-white"

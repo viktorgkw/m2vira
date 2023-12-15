@@ -58,6 +58,7 @@ export default function Cart() {
               >
                 Go to Home
               </Link>
+
               <Link
                 href="/profile"
                 className="flex px-2 py-2 bg-sky-500 hover:bg-sky-400 text-white font-bold border-b-4 border-sky-800 hover:border-sky-600 rounded hover:scale-[1.05] duration-300 mt-6 mx-2"
