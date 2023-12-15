@@ -1,9 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { UsersData } from "@/app/components/Admin/UsersData";
+import { Loading } from "@/app/components/Loading";
 
-export default async function AdminUsers() {
-  const raw = await fetch("https://m2vira.vercel.app/api/users/all");
+export default function AdminUsers() {
+  const router = useRouter();
 
-  const res = await raw.json();
+  const [users, setUsers] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("https://m2vira.vercel.app/api/users/all");
+
+      const data = await res.json();
+
+      if (data.status !== 200) {
+        toast.error(data.message);
+        router.push("/");
+      }
+
+      setUsers(data.users);
+    };
+
+    fetchData();
+  }, [router]);
 
   return (
     <>
@@ -13,7 +36,9 @@ export default async function AdminUsers() {
         <hr className="h-1 md:w-96 w-64 mx-auto my-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg" />
       </div>
 
-      {res.users.length > 0 ? (
+      {!users ? (
+        <Loading />
+      ) : users.length > 0 ? (
         <div className="px-4 sm:px-8 py-4 overflow-x-auto md:flex md:justify-center">
           <div className="inline-block max-w-fit shadow rounded-lg overflow-hidden">
             <table className="leading-normal w-auto">
@@ -33,7 +58,7 @@ export default async function AdminUsers() {
                   </th>
                 </tr>
               </thead>
-              <UsersData users={res.users} />
+              <UsersData users={users} />
             </table>
           </div>
         </div>
