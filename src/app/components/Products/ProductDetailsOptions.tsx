@@ -10,6 +10,7 @@ type ProductState = {
   id: string;
   color: string;
   size: string;
+  image: string;
 };
 
 type ProductInfo = {
@@ -17,11 +18,11 @@ type ProductInfo = {
   title: string;
   description: string;
   price: number;
-  image: File | null;
   sizes: string[];
   colors: string[];
   materials: string[];
   tags: string[];
+  images: string[];
 };
 
 export const ProductDetailsOptions = ({
@@ -36,6 +37,7 @@ export const ProductDetailsOptions = ({
     id: product._id,
     size: product.sizes[0],
     color: product.colors[0],
+    image: product.images[0],
   });
 
   const onFavoriteAdd = async () => {

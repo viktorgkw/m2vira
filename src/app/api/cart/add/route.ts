@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       color: productState.color,
       size: productState.size,
       isOrdered: false,
+      image: productState.image,
     });
 
     await user.save();

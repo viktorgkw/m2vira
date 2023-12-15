@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       price: Number,
       color: String,
       size: String,
+      image: String,
     },
   ],
   orders: [
