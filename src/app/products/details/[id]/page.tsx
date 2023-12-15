@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { getImage } from "@/helpers/storage";
 import { ProductDetailsOptions } from "@/app/components/Products/ProductDetailsOptions";
 
 config.autoAddCss = false;
@@ -49,9 +48,17 @@ export default async function ProductDetails({ params }: any) {
             </div>
           </div>
 
-          <div>
-            {data.product.images.map((i: any) => (
-              <>{i}</>
+          <div className="flex flex-wrap justify-center items-center">
+            {data.product.images.map((img: any, i: number) => (
+              <Image
+                key={i}
+                priority
+                width={512}
+                height={512}
+                alt="Product Image"
+                className="w-full md:w-[25%] rounded hover:scale-[1.03] duration-300 mt-8"
+                src={img}
+              />
             ))}
           </div>
         </div>

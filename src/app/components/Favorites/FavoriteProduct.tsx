@@ -13,7 +13,7 @@ export const FavoriteProduct = ({ product, disabled, removeFavorite }: any) => {
     <div className="rounded-xl max-w-xs overflow-hidden shadow-xl md:hover:scale-[1.03] bg-slate-200 dark:bg-slate-800 bg-opacity-40 dark:bg-opacity-40 md:transition-all md:duration-500 mx-2 my-4 md:mx-6 dark:text-slate-200 text-slate-800">
       <Link href={`/products/details/${product._id}`}>
         <Image
-          src={product.image}
+          src={product.images[0]}
           alt="Dress"
           width={512}
           height={512}

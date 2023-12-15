@@ -12,7 +12,12 @@ export const CartProduct = ({ product, removeFromCart }: any) => {
       <div className="flex">
         {product.image ? (
           <Link href={`/products/details/${product.id}`}>
-            <Image src={product.image} width={128} height={128} alt="Product" />
+            <Image
+              src={product.images[0]}
+              width={128}
+              height={128}
+              alt="Product"
+            />
           </Link>
         ) : (
           <div className="flex justify-center items-center">

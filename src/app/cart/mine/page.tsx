@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { getImage } from "@/helpers/storage";
 import { checkout } from "@/helpers/stripe";
 import { CartProduct } from "../../components/Cart/CartProduct";
 
@@ -15,7 +14,7 @@ type Product = {
   price: number;
   color: string;
   size: string;
-  image: string;
+  images: string[];
 };
 
 export default function Cart() {
@@ -61,12 +60,6 @@ export default function Cart() {
 
       setSubtotal(
         data.cart.reduce((total: any, { price }: any) => total + price, 0)
-      );
-
-      await Promise.all(
-        data.cart.map(async (product: Product) => {
-          product.image = await getImage(product.title);
-        })
       );
 
       setLoading(false);

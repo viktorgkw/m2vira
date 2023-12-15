@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getImage } from "@/helpers/storage";
 import { FavoriteProduct } from "../components/Favorites/FavoriteProduct";
 import { Loading } from "@/app/components/Loading";
 import { useSession } from "next-auth/react";
@@ -12,7 +11,7 @@ type FavoriteProductInfo = {
   _id: string;
   title: string;
   price: number;
-  image?: string;
+  images: string[];
 };
 
 export default function Favorites() {
@@ -36,14 +35,6 @@ export default function Favorites() {
       });
 
       const data = await res.json();
-
-      if (data.products.length !== 0) {
-        await Promise.all(
-          data.products.map(async (product: FavoriteProductInfo) => {
-            product.image = await getImage(product.title);
-          })
-        );
-      }
 
       setFavorites(data.products);
     };
