@@ -146,9 +146,7 @@ export default function Cart() {
 
               <button
                 disabled={checkoutDisabled}
-                onClick={async () =>
-                  router.push(await checkout({ cartTotal: subtotal }))
-                }
+                onClick={async () => router.push(await checkout({ products }))}
                 className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50"
               >
                 Checkout
