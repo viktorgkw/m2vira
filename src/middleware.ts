@@ -29,6 +29,7 @@ export default async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     "/api/users/all",
+    "/api/users/delete",
     "/api/products/create",
     "/api/products/edit",
     "/products/create",
