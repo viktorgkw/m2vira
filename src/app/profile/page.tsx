@@ -40,20 +40,9 @@ export default function ProfilePage() {
       {!session?.user ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-screen antialiased">
-          <div className="container mx-auto my-auto">
+        <div className="flex flex-col items-center justify-center min-h-screen antialiased my-8">
+          <div className="container mx-auto">
             <div className="pb-3 relative shadow-2xl rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto bg-gradient-to-r dark:from-slate-950 dark:via-slate-800 dark:to-slate-950 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 from-indigo-200 via-purple-200 to-pink-200">
-              <div className="flex justify-center">
-                <Image
-                  src="/avatar.png"
-                  alt="Avatar"
-                  priority
-                  className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-lg border-4 border-white transition duration-200 transform hover:scale-110"
-                  height={120}
-                  width={120}
-                />
-              </div>
-
               <div className="mt-16">
                 <div className="flex flex-row justify-center items-center font-bold text-3xl dark:text-slate-300 text-slate-800 mb-2">
                   <h1 className="mx-1 text-center">{session?.user?.name}</h1>
