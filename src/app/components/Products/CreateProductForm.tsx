@@ -1,6 +1,5 @@
 "use client";
 
-import { addImage } from "@/helpers/storage";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -70,13 +69,13 @@ export const CreateProductForm = () => {
 
   const create = async () => {
     try {
+      const formData = new FormData();
+      formData.append("file", product.image!);
+      formData.append("product", JSON.stringify(product));
+
       const res = await fetch(`https://m2vira.vercel.app/api/products/create`, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
+        body: formData,
       });
 
       const data = await res.json();
@@ -84,8 +83,6 @@ export const CreateProductForm = () => {
       if (data.status !== 200) {
         throw new Error(data.message);
       }
-
-      await addImage(data.product.title, product.image!);
 
       toast.success(data.message);
       router.push("/products/all");

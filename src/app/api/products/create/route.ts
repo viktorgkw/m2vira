@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import Product from "@/models/productModel";
 import { connect } from "@/helpers/mongoDB";
+import { addImage } from "@/helpers/storage";
 
 export async function POST(request: NextRequest) {
   try {
     await connect();
 
-    const body = await request.json();
-    const { title, description, price, materials, sizes, colors, tags } = body;
+    const formData = await request.formData();
+
+    const { title, description, price, materials, sizes, colors, tags } =
+      JSON.parse(formData.get("product") as string);
 
     const product = await Product.findOne({ title });
 
@@ -17,6 +20,8 @@ export async function POST(request: NextRequest) {
         status: 403,
       });
     }
+
+    await addImage(title, formData.get("file") as File);
 
     const splittedMaterials: string[] = materials.split(",");
     const splittedSizes: string[] = sizes.split(",");
