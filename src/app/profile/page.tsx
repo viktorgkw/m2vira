@@ -40,7 +40,7 @@ export default function ProfilePage() {
       {!session?.user ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-screen antialiased">
+        <div className="flex flex-col items-center justify-center min-h-screen antialiased mt-12">
           <div className="container mx-auto">
             <div className="pb-3 relative shadow-2xl rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto bg-gradient-to-r dark:from-slate-950 dark:via-slate-800 dark:to-slate-950 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%] transition-all duration-500 from-indigo-200 via-purple-200 to-pink-200">
               <div className="flex justify-center">
