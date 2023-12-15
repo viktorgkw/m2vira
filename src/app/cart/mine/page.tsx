@@ -14,7 +14,7 @@ type Product = {
   price: number;
   color: string;
   size: string;
-  images: string[];
+  image: string;
 };
 
 export default function Cart() {

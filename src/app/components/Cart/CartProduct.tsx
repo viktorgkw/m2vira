@@ -12,7 +12,7 @@ type Product = {
   price: number;
   color: string;
   size: string;
-  images: string[];
+  image: string;
 };
 
 export const CartProduct = ({
@@ -25,14 +25,9 @@ export const CartProduct = ({
   return (
     <li key={product.id} className="flex flex-row md:flex-col">
       <div className="flex">
-        {product.images.length !== 0 ? (
+        {product.image ? (
           <Link href={`/products/details/${product.id}`}>
-            <Image
-              src={product.images[0]}
-              width={128}
-              height={128}
-              alt="Product"
-            />
+            <Image src={product.image} width={128} height={128} alt="Product" />
           </Link>
         ) : (
           <div className="flex justify-center items-center">

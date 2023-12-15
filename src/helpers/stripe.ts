@@ -6,7 +6,7 @@ type Product = {
   price: number;
   color: string;
   size: string;
-  images: string[];
+  image: string;
 };
 
 export async function checkout({
@@ -22,7 +22,7 @@ export async function checkout({
         currency: "usd",
         product_data: {
           name: p.title,
-          images: p.images,
+          images: [p.image],
         },
         unit_amount: p.price * 100,
       },
