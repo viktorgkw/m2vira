@@ -10,7 +10,7 @@ export const Product = ({ product }: any) => {
       <Link href={`/products/details/${product._id}`}>
         <div className="relative">
           <Image
-            src={product.image}
+            src={product.images[0]}
             alt="Dress"
             width={512}
             height={512}
@@ -29,6 +29,8 @@ export const Product = ({ product }: any) => {
           ${product.price}
         </p>
       </div>
+
+      {product.images.length}
     </div>
   );
 };

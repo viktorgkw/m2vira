@@ -1,21 +1,11 @@
 import { storage } from "@/helpers/firebase";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export const addImage = async (title: string, imgFile: File) => {
-  const storageRef = ref(storage, title);
+export const addImage = async (fileName: string, imgFile: File) => {
+  const storageRef = ref(storage, fileName);
   await uploadBytes(storageRef, imgFile);
 };
 
-export const deleteImage = async (title: string): Promise<void> => {
-  const storageRef = ref(storage, title);
-  await deleteObject(storageRef);
-};
-
-export const getImage = async (title: string): Promise<string> => {
-  return await getDownloadURL(ref(storage, title));
+export const getImage = async (fileName: string): Promise<string> => {
+  return await getDownloadURL(ref(storage, fileName));
 };

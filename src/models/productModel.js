@@ -20,6 +20,7 @@ const productSchema = new mongoose.Schema({
     type: Date,
     required: [true, "Please provide 'createdAt' date!"],
   },
+  images: [String],
   materials: [String],
   sizes: [String],
   colors: [String],

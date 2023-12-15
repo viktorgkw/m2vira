@@ -8,7 +8,7 @@ type ProductInfo = {
   title: string;
   description: string;
   price: number;
-  image: File | null;
+  images: File[] | null;
   sizes: string;
   colors: string;
   materials: string;
@@ -23,7 +23,7 @@ export const CreateProductForm = () => {
     title: "",
     description: "",
     price: 0.1,
-    image: null,
+    images: null,
     materials: "",
     sizes: "",
     colors: "",
@@ -55,7 +55,7 @@ export const CreateProductForm = () => {
       product.title.length > 3 &&
       product.description.length > 6 &&
       product.price !== 0.1 &&
-      product.image &&
+      product.images &&
       product.materials &&
       product.sizes &&
       product.colors &&
@@ -70,7 +70,12 @@ export const CreateProductForm = () => {
   const create = async () => {
     try {
       const formData = new FormData();
-      formData.append("file", product.image!);
+
+      for (let i = 0; i < product.images!.length; i++) {
+        formData.append(`image${i}`, product.images![i]);
+      }
+
+      formData.append("images_count", JSON.stringify(product.images!.length));
       formData.append("product", JSON.stringify(product));
 
       const res = await fetch(`https://m2vira.vercel.app/api/products/create`, {
@@ -93,7 +98,7 @@ export const CreateProductForm = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setProduct({ ...product, image: e.target.files[0] });
+      setProduct({ ...product, images: Array.from(e.target.files) });
     }
   };
 
@@ -106,12 +111,13 @@ export const CreateProductForm = () => {
       <hr className="w-48 h-1 mx-auto my-4 border-0 rounded mt-5 mb-12 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 drop-shadow-lg from-slate-800 via-slate-700 to-slate-800" />
 
       <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
-        Image
+        Images
       </label>
 
       <input
         className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
         type="file"
+        multiple
         accept="image/png"
         onChange={(e) => handleImageChange(e)}
       />
