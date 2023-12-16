@@ -73,7 +73,7 @@ export const NavBar = () => {
                   className="flex flex-col justify-center items-center"
                 >
                   <FontAwesomeIcon icon={faLock} width="24" height="24" />
-                  <p className="font-semibold">Admin-Panel</p>
+                  <p className="font-semibold">Dashboard</p>
                 </Link>
               </li>
             )}

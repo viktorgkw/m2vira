@@ -9,10 +9,10 @@ export default function CreatePromocode() {
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [code, setCode] = useState("");
-  const [percent, setPercent] = useState(0);
+  const [percent, setPercent] = useState(1);
 
   useEffect(() => {
-    if (code.length > 6 && percent > 0 && percent < 90) {
+    if (code.length > 6) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -25,7 +25,7 @@ export default function CreatePromocode() {
         `https://m2vira.vercel.app/api/promocodes/create`,
         {
           method: "POST",
-          body: JSON.stringify({ code: code }),
+          body: JSON.stringify({ code, percent }),
         }
       );
 
@@ -70,6 +70,8 @@ export default function CreatePromocode() {
         <input
           className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
           type="number"
+          min={1}
+          max={90}
           value={percent}
           onChange={(e) => setPercent(Number(e.target.value))}
           placeholder="Percent"
