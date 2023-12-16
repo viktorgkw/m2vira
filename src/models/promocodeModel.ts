@@ -6,6 +6,10 @@ const promocodesSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  percent: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,

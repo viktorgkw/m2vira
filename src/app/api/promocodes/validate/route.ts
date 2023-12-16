@@ -7,26 +7,19 @@ export async function POST(request: NextRequest) {
     await connect();
 
     const body = await request.json();
-    const code = await Promocodes.findOne({ code: body.code });
+    const code = await Promocodes.findOne({ code: body.promocode });
 
-    if (code) {
+    if (!code) {
       return NextResponse.json({
-        message: "Promocode already exists!",
-        status: 403,
+        message: "Invalid promocode!",
+        status: 404,
       });
     }
 
-    const newCode = new Promocodes({
-      code: body.code,
-      percent: body.percent,
-      createdAt: Date.now(),
-    });
-
-    await newCode.save();
-
     return NextResponse.json({
-      message: "Promocode created successfully!",
+      message: "Promocode is valid!",
       status: 200,
+      percent: code.percent,
     });
   } catch (err: any) {
     return NextResponse.json({ message: err.message, status: 500 });

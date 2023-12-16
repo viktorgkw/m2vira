@@ -11,8 +11,10 @@ type Product = {
 
 export async function checkout({
   products,
+  appliedCode,
 }: {
   products: Product[];
+  appliedCode: string;
 }): Promise<string> {
   const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 

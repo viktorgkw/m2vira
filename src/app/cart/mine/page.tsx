@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { checkout } from "@/helpers/stripe";
 import { CartProduct } from "../../components/Cart/CartProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
 
 type Product = {
   id: string;
@@ -28,6 +30,9 @@ export default function Cart() {
   });
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [promocode, setPromocode] = useState("");
+  const [appliedCode, setAppliedCode] = useState("");
+  const [promocodeDisabled, setPromocodeDisabled] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [checkoutDisabled, setCheckoutDisabled] = useState(true);
@@ -86,14 +91,42 @@ export default function Cart() {
     setProducts(products.filter((p) => p.id !== prodId));
   };
 
+  const applyPromocode = async () => {
+    setPromocodeDisabled(true);
+
+    try {
+      const res = await fetch(
+        "https://m2vira.vercel.app/api/promocodes/validate",
+        {
+          method: "POST",
+          body: JSON.stringify({ promocode }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.status !== 200) {
+        throw new Error(data.message);
+      }
+
+      setAppliedCode(promocode);
+      setSubtotal(subtotal - (subtotal * Number(data.percent)) / 100);
+
+      toast.success("Promocode applied!");
+    } catch (err: any) {
+      toast.error("Invalid promocode!");
+      setPromocodeDisabled(false);
+    }
+  };
+
   return (
     <>
-      <div className="flex flex-col items-center justify-center my-8">
-        <p className="text-2xl md:text-5xl uppercase text-slate-200 font-bold">
+      <div className="flex flex-col items-center justify-center my-8 mx-2">
+        <p className="text-3xl md:text-5xl uppercase text-slate-200 font-bold">
           Your Cart
         </p>
 
-        <hr className="h-1 w-36 md:w-72 mx-auto mb-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+        <hr className="h-1 w-48 md:w-72 mx-auto border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg mb-8" />
 
         <div className="flex flex-col max-w-3xl space-y-4 bg-opacity-50 dark:bg-opacity-50 bg-slate-200 dark:bg-slate-800 rounded-xl px-8 py-12">
           {!session?.user || loading ? (
@@ -118,7 +151,28 @@ export default function Cart() {
             </ul>
           )}
 
-          <div className="space-y-1 text-right">
+          <div className="space-y-1 text-center pt-4">
+            {products.length > 0 && (
+              <div className="flex flex-row justify-center items-center mb-4">
+                <input
+                  className="p-2 rounded-lg dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-48 w-[75%] outline-none text-slate-200 bg-slate-800 mx-1 disabled:opacity-25"
+                  type="text"
+                  value={promocode}
+                  disabled={promocodeDisabled}
+                  onChange={(e) => setPromocode(e.target.value)}
+                  placeholder="Enter Promocode"
+                />
+
+                <button
+                  onClick={applyPromocode}
+                  disabled={promocodeDisabled}
+                  className="flex px-2 py-2 mx-1 bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold border-b-4 border-fuchsia-800 hover:border-fuchsia-600 rounded hover:scale-[1.05] duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:border-indigo-800 dark:hover:border-indigo-600 disabled:opacity-25"
+                >
+                  <FontAwesomeIcon icon={faTicket} width={20} height={20} />
+                </button>
+              </div>
+            )}
+
             <p>
               Total amount:
               <span className="font-semibold text-emerald-600 dark:text-emerald-500">
@@ -131,10 +185,11 @@ export default function Cart() {
               Not including taxes and shipping costs
             </p>
           </div>
-          <div className="flex justify-between">
+
+          <div className="flex justify-between pt-6">
             <Link
               href="/products/all"
-              className="px-2 py-2 bg-sky-500 hover:bg-sky-400 text-white font-bold border-b-4 border-blue-800 hover:border-blue-600 rounded hover:scale-[1.05] duration-300"
+              className="px-2 py-2 bg-sky-500 hover:bg-sky-400 text-white font-bold border-b-4 border-blue-800 hover:border-blue-600 rounded hover:scale-[1.05] duration-300 mx-1"
             >
               Continue Shopping
             </Link>
@@ -146,8 +201,10 @@ export default function Cart() {
 
               <button
                 disabled={checkoutDisabled}
-                onClick={async () => router.push(await checkout({ products }))}
-                className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50"
+                onClick={async () =>
+                  router.push(await checkout({ products, appliedCode }))
+                }
+                className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50 h-full mx-1"
               >
                 Checkout
               </button>

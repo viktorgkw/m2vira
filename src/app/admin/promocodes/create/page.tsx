@@ -9,14 +9,15 @@ export default function CreatePromocode() {
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [code, setCode] = useState("");
+  const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    if (code.length > 6) {
+    if (code.length > 6 && percent > 0 && percent < 90) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [code]);
+  }, [code, percent]);
 
   const create = async () => {
     try {
@@ -60,6 +61,18 @@ export default function CreatePromocode() {
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder="Code"
+        />
+
+        <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">
+          Percent
+        </label>
+
+        <input
+          className="p-2 rounded-lg mb-4 dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-96 w-fit outline-none text-slate-200 bg-slate-800"
+          type="number"
+          value={percent}
+          onChange={(e) => setPercent(Number(e.target.value))}
+          placeholder="Percent"
         />
 
         <button

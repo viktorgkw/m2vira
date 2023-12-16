@@ -33,6 +33,10 @@ export const CodesData = ({ codesData }: any) => {
           </td>
 
           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="whitespace-no-wrap text-emerald-600">{c.percent}</p>
+          </td>
+
+          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <p className="whitespace-no-wrap text-emerald-600">{c.createdAt}</p>
           </td>
 
