@@ -1,9 +1,4 @@
-import {
-  faPenToSquare,
-  faPlus,
-  faTrashCan,
-  faUserMinus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPercent, faSocks, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { AdminOptionCard } from "../../components/Admin/AdminOptionCard";
 
 export default function AdminPanel() {
@@ -15,33 +10,26 @@ export default function AdminPanel() {
 
       <hr className="h-1 md:w-72 w-48 mx-auto my-4 border-0 rounded md:mt-5 md:mb-12 bg-gradient-to-r dark:from-slate-300 dark:via-slate-200 dark:to-slate-300 from-slate-800 via-slate-700 to-slate-800 drop-shadow-lg" />
 
-      <div className="flex flex-wrap items-center">
+      <div className="flex flex-wrap items-center justify-center mt-8">
         <AdminOptionCard
-          icon={faUserMinus}
-          iconColor="text-red-600"
-          text="Delete user"
+          icon={faUsers}
+          iconColor="text-fuchsia-600"
+          text="Users"
           link={"/admin/users"}
         />
 
         <AdminOptionCard
-          icon={faPlus}
-          iconColor="text-emerald-600"
-          text="Add product"
-          link={"/products/create"}
-        />
-
-        <AdminOptionCard
-          icon={faTrashCan}
-          iconColor="text-rose-600"
-          text="Delete product"
+          icon={faSocks}
+          iconColor="text-amber-600"
+          text="Products"
           link={"/admin/products"}
         />
 
         <AdminOptionCard
-          icon={faPenToSquare}
+          icon={faPercent}
           iconColor="text-indigo-600"
-          text="Edit product"
-          link={"/admin/products"}
+          text="Promocodes"
+          link={"/admin/promocodes"}
         />
       </div>
     </>
