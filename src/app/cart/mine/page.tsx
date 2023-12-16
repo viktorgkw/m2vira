@@ -58,8 +58,7 @@ export default function Cart() {
     setLoading(true);
 
     const fetchData = async () => {
-      // const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
-      const res = await fetch("http://localhost:3000/api/cart/get", {
+      const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
@@ -105,10 +104,13 @@ export default function Cart() {
     setPromocodeDisabled(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/promocodes/validate", {
-        method: "POST",
-        body: JSON.stringify({ promocode: promocode.code }),
-      });
+      const res = await fetch(
+        "https://m2vira.vercel.app/api/promocodes/validate",
+        {
+          method: "POST",
+          body: JSON.stringify({ promocode: promocode.code }),
+        }
+      );
 
       const data = await res.json();
 
