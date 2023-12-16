@@ -16,10 +16,17 @@ export async function GET(request: NextRequest) {
 
     await connect();
 
-    const date = new Date();
-    date.setDate(date.getDate() - 7);
+    const promocodes = await Promocodes.find();
 
-    await Promocodes.deleteMany({ createdAt: { $lt: date } });
+    for (const pc of promocodes) {
+      const createdAt = new Date(pc.createdAt);
+      const differenceInDays =
+        (new Date().getTime() - createdAt.getTime()) / (1000 * 3600 * 24 * 7);
+
+      if (differenceInDays >= 7) {
+        await Promocodes.deleteOne({ code: pc.code });
+      }
+    }
 
     return NextResponse.json({
       message: "(Monthly promocodes cleanup) Cron executed successfully!",
