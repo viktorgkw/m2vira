@@ -87,7 +87,7 @@ export async function checkout({
     payment_method_types: ["card"],
     line_items: stripeProducts,
     mode: "payment",
-    success_url: "https://m2vira.vercel.app/cart/checkout",
+    success_url: `https://m2vira.vercel.app/cart/checkout/${promocode.id}`,
     cancel_url: "https://m2vira.vercel.app/cart/mine",
   });
 
