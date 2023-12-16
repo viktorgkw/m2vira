@@ -8,7 +8,7 @@ export const ProductsData = ({ products }: any) => {
   const [prods, setProds] = useState(products);
 
   const deleteProduct = async (id: any) => {
-    const raw = await fetch("https://m2vira.vercel.app/api/products/delete", {
+    const raw = await fetch(`${process.env.DOMAIN}/api/products/delete`, {
       method: "POST",
       body: JSON.stringify({ _id: id }),
     });

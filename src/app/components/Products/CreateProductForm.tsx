@@ -78,7 +78,7 @@ export const CreateProductForm = () => {
       formData.append("images_count", JSON.stringify(product.images!.length));
       formData.append("product", JSON.stringify(product));
 
-      const res = await fetch(`https://m2vira.vercel.app/api/products/create`, {
+      const res = await fetch(`${process.env.DOMAIN}/api/products/create`, {
         method: "POST",
         body: formData,
       });

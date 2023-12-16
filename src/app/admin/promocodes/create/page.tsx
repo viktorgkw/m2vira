@@ -21,13 +21,10 @@ export default function CreatePromocode() {
 
   const create = async () => {
     try {
-      const res = await fetch(
-        `https://m2vira.vercel.app/api/promocodes/create`,
-        {
-          method: "POST",
-          body: JSON.stringify({ code, percent }),
-        }
-      );
+      const res = await fetch(`${process.env.DOMAIN}/api/promocodes/create`, {
+        method: "POST",
+        body: JSON.stringify({ code, percent }),
+      });
 
       const data = await res.json();
 

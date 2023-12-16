@@ -13,7 +13,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/users/all");
+      const res = await fetch(`${process.env.DOMAIN}/api/users/all`);
 
       const data = await res.json();
 

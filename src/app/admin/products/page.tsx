@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductsData } from "@/app/components/Admin/ProductsData";
 
 export default async function AdminProducts() {
-  const raw = await fetch("https://m2vira.vercel.app/api/products/all");
+  const raw = await fetch(`${process.env.DOMAIN}/api/products/all`);
 
   const res = await raw.json();
 

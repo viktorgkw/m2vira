@@ -25,7 +25,7 @@ export default function ProfilePage() {
   const [orders, setOrders] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`https://m2vira.vercel.app/api/orders`, {
+    fetch(`${process.env.DOMAIN}/api/orders`, {
       method: "POST",
       body: JSON.stringify({ email: session?.user?.email }),
     })

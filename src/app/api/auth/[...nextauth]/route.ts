@@ -14,7 +14,7 @@ const authOptions = {
   callbacks: {
     async signIn({ user, account }: any) {
       if (account.provider === "google") {
-        await fetch(`https://m2vira.vercel.app/api/signIn`, {
+        await fetch(`${process.env.DOMAIN}/api/signIn`, {
           method: "POST",
           body: JSON.stringify({
             name: user.name,

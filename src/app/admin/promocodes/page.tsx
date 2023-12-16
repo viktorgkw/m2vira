@@ -14,7 +14,7 @@ export default function AdminPromocodes() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/promocodes/all");
+      const res = await fetch(`${process.env.DOMAIN}/api/promocodes/all`);
 
       const data = await res.json();
 

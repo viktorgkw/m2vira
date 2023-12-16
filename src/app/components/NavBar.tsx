@@ -28,7 +28,7 @@ export const NavBar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/permissions", {
+      const res = await fetch(`${process.env.DOMAIN}/api/permissions`, {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });

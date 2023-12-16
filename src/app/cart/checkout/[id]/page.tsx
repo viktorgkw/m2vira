@@ -21,12 +21,12 @@ export default function Cart({ params }: any) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://m2vira.vercel.app/api/cart/order", {
+      await fetch(`${process.env.DOMAIN}/api/cart/order`, {
         method: "POST",
         body: JSON.stringify({ userEmail: session?.user?.email }),
       });
 
-      await fetch("https://m2vira.vercel.app/api/promocodes/delete", {
+      await fetch(`${process.env.DOMAIN}/api/promocodes/delete`, {
         method: "POST",
         body: JSON.stringify({ _id: params.id }),
       });

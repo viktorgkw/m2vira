@@ -7,7 +7,7 @@ export const CodesData = ({ codesData }: any) => {
   const [codes, setCodes] = useState(codesData);
 
   const deleteCode = async (id: any) => {
-    const raw = await fetch("https://m2vira.vercel.app/api/promocodes/delete", {
+    const raw = await fetch(`${process.env.DOMAIN}/api/promocodes/delete`, {
       method: "POST",
       body: JSON.stringify({ _id: id }),
     });

@@ -26,13 +26,10 @@ export const EditProductForm = ({ id }: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `https://m2vira.vercel.app/api/products/details`,
-        {
-          method: "POST",
-          body: JSON.stringify({ id }),
-        }
-      );
+      const res = await fetch(`${process.env.DOMAIN}/api/products/details`, {
+        method: "POST",
+        body: JSON.stringify({ id }),
+      });
 
       const data = await res.json();
 
@@ -67,7 +64,7 @@ export const EditProductForm = ({ id }: any) => {
     setIsBtnDisabled(true);
 
     try {
-      const res = await fetch("https://m2vira.vercel.app/api/products/edit", {
+      const res = await fetch(`${process.env.DOMAIN}/api/products/edit`, {
         method: "POST",
         body: JSON.stringify(product),
       });

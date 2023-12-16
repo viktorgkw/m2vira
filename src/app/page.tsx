@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Newsletter } from "./components/Home/Newsletter";
 
 export default function Home() {
   return (
@@ -60,8 +59,6 @@ export default function Home() {
           </figcaption>
         </figure>
       </div>
-
-      <Newsletter />
     </>
   );
 }

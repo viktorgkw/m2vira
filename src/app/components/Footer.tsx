@@ -12,7 +12,7 @@ export const Footer = () => {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://m2vira.vercel.app" className="flex items-center">
+            <a href={process.env.DOMAIN} className="flex items-center">
               <Image
                 src={theme === "dark" ? "/logo-white.png" : "/logo-black.png"}
                 width={128}
@@ -69,7 +69,7 @@ export const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm sm:text-center text-slate-800 dark:text-slate-200 cursor-default font-bold">
             © {new Date().getFullYear()}
-            <a href="https://m2vira.vercel.app" className="hover:text-white">
+            <a href={process.env.DOMAIN} className="hover:text-white">
               {" "}
               m2vira™
             </a>

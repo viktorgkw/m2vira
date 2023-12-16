@@ -7,7 +7,7 @@ export const UsersData = ({ users }: any) => {
   const [usrs, setUsers] = useState(users);
 
   const deleteUser = async (id: any) => {
-    const raw = await fetch("https://m2vira.vercel.app/api/users/delete", {
+    const raw = await fetch(`${process.env.DOMAIN}/api/users/delete`, {
       method: "POST",
       body: JSON.stringify({ _id: id }),
     });
