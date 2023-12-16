@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Loading } from "@/app/components/Loading";
 
-export default function Cart() {
+export default function Cart({ params }: any) {
   const router = useRouter();
 
   const { data: session } = useSession({
@@ -26,11 +26,16 @@ export default function Cart() {
         body: JSON.stringify({ userEmail: session?.user?.email }),
       });
 
+      await fetch("https://m2vira.vercel.app/api/promocodes/delete", {
+        method: "POST",
+        body: JSON.stringify({ _id: params.id }),
+      });
+
       setLoading(false);
     };
 
     fetchData();
-  }, [router, session]);
+  }, [router, session, params]);
 
   return (
     <>

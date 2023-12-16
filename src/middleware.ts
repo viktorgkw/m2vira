@@ -34,6 +34,7 @@ export const config = {
     "/api/users/all",
     "/api/users/delete",
     "/api/products/create",
+    "/api/products/delete",
     "/api/products/edit",
     "/products/create",
     "/products/edit/:path*",
@@ -41,6 +42,6 @@ export const config = {
     "/admin/products",
     "/admin/users",
     "/admin/promocodes",
-    // TODO: add promocodes/create page
+    "/admin/promocodes/create",
   ],
 };
