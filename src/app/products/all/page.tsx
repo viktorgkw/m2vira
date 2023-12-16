@@ -1,5 +1,5 @@
-import { NoProducts } from "@/app/components/Products/NoProducts";
-import { ProductsDisplay } from "@/app/components/Products/ProductsDisplay";
+import { NoProducts } from "@/app/components/Products/All/NoProducts";
+import { ProductsDisplay } from "@/app/components/Products/All/ProductsDisplay";
 
 export default async function AllProducts() {
   const res = await fetch(`${process.env.DOMAIN}/api/products/all`, {

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { ProductDetails } from "@/app/components/Products/ProductDetails";
+import { ProductDetails } from "@/app/components/Products/Details/ProductDetails";
 
 export default async function ProductDetailsPage({ params }: any) {
   const res = await fetch(`${process.env.DOMAIN}/api/products/details`, {

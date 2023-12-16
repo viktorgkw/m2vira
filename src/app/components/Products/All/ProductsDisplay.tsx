@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { NoData } from "../Global/NoData";
+import { NoData } from "../../Global/NoData";
 import { Filters } from "./Filters";
 import { Product } from "./Product";
 import { ProductDisplayType } from "@/types/ProductDisplayType";

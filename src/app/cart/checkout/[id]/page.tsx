@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Loading } from "@/app/components/Loading";
-import { Content } from "@/app/components/Cart/Content";
+import { Content } from "@/app/components/Cart/Checkout/Content";
 
 export default function Cart({ params }: any) {
   const router = useRouter();

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { FormButton } from "../Global/FormButton";
+import { FormButton } from "../../Global/FormButton";
 import { CreateProductInputFields } from "./CreateProductInputFields";
-import { FormTitle } from "../Global/FormTitle";
+import { FormTitle } from "../../Global/FormTitle";
 import { CreateProductType } from "@/types/CreateProductType";
 
 export const CreateProductForm = () => {
