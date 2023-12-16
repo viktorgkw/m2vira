@@ -24,9 +24,6 @@ export async function POST(req: NextRequest) {
       message: "Sign In was successful!",
     });
   } catch (err: any) {
-    console.log("bomba?");
-    console.log(err.message);
-
     return NextResponse.json({ message: err.message, status: 500 });
   }
 }

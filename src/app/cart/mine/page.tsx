@@ -58,7 +58,8 @@ export default function Cart() {
     setLoading(true);
 
     const fetchData = async () => {
-      const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
+      // const res = await fetch("https://m2vira.vercel.app/api/cart/get", {
+      const res = await fetch("http://localhost:3000/api/cart/get", {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
@@ -76,15 +77,11 @@ export default function Cart() {
         data.cart.reduce((total: any, { price }: any) => total + price, 0)
       );
 
-      if (promocode.percent > 0) {
-        setSubtotal(subtotal - (subtotal * promocode.percent) / 100);
-      }
-
       setLoading(false);
     };
 
     fetchData();
-  }, [promocode, router, session, subtotal]);
+  }, [router, session, subtotal]);
 
   const removeFromCart = async (prodId: any) => {
     const res = await fetch(`https://m2vira.vercel.app/api/cart/delete`, {
@@ -102,23 +99,16 @@ export default function Cart() {
 
     toast.success(data.message);
     setProducts(products.filter((p) => p.id !== prodId));
-
-    if (promocode.percent > 0) {
-      setSubtotal(subtotal - (subtotal * promocode.percent) / 100);
-    }
   };
 
   const applyPromocode = async () => {
     setPromocodeDisabled(true);
 
     try {
-      const res = await fetch(
-        "https://m2vira.vercel.app/api/promocodes/validate",
-        {
-          method: "POST",
-          body: JSON.stringify({ promocode }),
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/promocodes/validate", {
+        method: "POST",
+        body: JSON.stringify({ promocode: promocode.code }),
+      });
 
       const data = await res.json();
 
@@ -128,14 +118,14 @@ export default function Cart() {
 
       setPromocode({
         ...promocode,
-        percent: Number(data.percent),
+        percent: data.percent,
         isValid: true,
       });
-      setSubtotal(subtotal - (subtotal * Number(data.percent)) / 100);
 
       toast.success("Promocode applied!");
     } catch (err: any) {
-      toast.error("Invalid promocode!");
+      toast.error(err.message);
+      setPromocode({ ...promocode, code: "" });
       setPromocodeDisabled(false);
     }
   };
@@ -197,12 +187,35 @@ export default function Cart() {
             )}
 
             <p>
-              Total amount:
-              <span className="font-semibold text-emerald-600 dark:text-emerald-500">
+              Subtotal:
+              <span className="font-semibold text-sky-600 dark:text-sky-500">
                 {" "}
                 ${subtotal.toFixed(2)}
               </span>
             </p>
+
+            {promocode.isValid && (
+              <>
+                <p>
+                  Discount:
+                  <span className="font-semibold text-amber-600 dark:text-amber-500">
+                    {" "}
+                    {promocode.percent}%
+                  </span>
+                </p>
+
+                <p>
+                  Grand Total:
+                  <span className="font-semibold text-emerald-600 dark:text-emerald-500">
+                    {" "}
+                    $
+                    {(subtotal - (subtotal * promocode.percent) / 100).toFixed(
+                      2
+                    )}
+                  </span>
+                </p>
+              </>
+            )}
 
             <p className="text-sm font-bold text-red-500">
               Not including taxes and shipping costs
