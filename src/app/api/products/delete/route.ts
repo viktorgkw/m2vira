@@ -18,10 +18,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    const users: any[] = await User.find();
+
+    for (let i = 0; i < users.length; i++) {
+      users[i].cart = users[i].cart.filter((p: any) => p.id !== _id);
+    }
+
     await Favorites.deleteMany({ productId: _id });
-
-    User.updateMany({ "cart.id": _id }, { $pull: { cart: { id: _id } } });
-
     await Product.deleteOne({ _id: _id });
 
     return NextResponse.json({
