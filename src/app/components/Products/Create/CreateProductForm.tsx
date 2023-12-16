@@ -7,6 +7,7 @@ import { FormButton } from "../../Global/FormButton";
 import { CreateProductInputFields } from "./CreateProductInputFields";
 import { FormTitle } from "../../Global/FormTitle";
 import { CreateProductType } from "@/types/CreateProductType";
+import { create } from "@/services/products";
 
 export const CreateProductForm = () => {
   const router = useRouter();
@@ -60,7 +61,7 @@ export const CreateProductForm = () => {
     }
   }, [product]);
 
-  const create = async () => {
+  const createProduct = async () => {
     try {
       const formData = new FormData();
 
@@ -71,18 +72,13 @@ export const CreateProductForm = () => {
       formData.append("images_count", JSON.stringify(product.images!.length));
       formData.append("product", JSON.stringify(product));
 
-      const res = await fetch(`${process.env.DOMAIN}/api/products/create`, {
-        method: "POST",
-        body: formData,
-      });
+      const { status, message } = await create(formData);
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
+      if (status !== 200) {
+        throw new Error(message);
       }
 
-      toast.success(data.message);
+      toast.success(message);
       router.push("/products/all");
     } catch (err: any) {
       toast.error(err.message);
@@ -108,7 +104,11 @@ export const CreateProductForm = () => {
           textareaCols={textareaCols}
         />
 
-        <FormButton text="Create" action={create} isDisabled={isDisabled} />
+        <FormButton
+          text="Create"
+          action={createProduct}
+          isDisabled={isDisabled}
+        />
       </div>
     </div>
   );

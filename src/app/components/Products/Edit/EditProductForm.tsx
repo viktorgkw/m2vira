@@ -7,6 +7,7 @@ import { EditProductInputFields } from "./EditProductInputFields";
 import { FormButton } from "../../Global/FormButton";
 import { FormTitle } from "../../Global/FormTitle";
 import { CreateProductType } from "@/types/CreateProductType";
+import { detailsById, edit } from "@/services/products";
 
 export const EditProductForm = ({ id }: any) => {
   const router = useRouter();
@@ -19,18 +20,13 @@ export const EditProductForm = ({ id }: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`${process.env.DOMAIN}/api/products/details`, {
-        method: "POST",
-        body: JSON.stringify({ id }),
-      });
+      const { status, product } = await detailsById(id);
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
+      if (status !== 200) {
         router.push("/products/all");
       }
 
-      setProduct(data.product);
+      setProduct(product);
     };
 
     fetchData();
@@ -53,22 +49,17 @@ export const EditProductForm = ({ id }: any) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const edit = async () => {
+  const editProduct = async () => {
     setIsBtnDisabled(true);
 
     try {
-      const res = await fetch(`${process.env.DOMAIN}/api/products/edit`, {
-        method: "POST",
-        body: JSON.stringify(product),
-      });
+      const { status, message } = await edit(product);
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
+      if (status !== 200) {
+        throw new Error(message);
       }
 
-      toast.success(data.message);
+      toast.success(message);
       router.push("/products/all");
     } catch (err: any) {
       toast.error(err.message);
@@ -98,7 +89,7 @@ export const EditProductForm = ({ id }: any) => {
 
         <FormButton
           text="Save Changes"
-          action={edit}
+          action={editProduct}
           isDisabled={isBtnDisabled}
         />
       </div>

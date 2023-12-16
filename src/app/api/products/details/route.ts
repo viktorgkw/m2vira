@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         message: "Product was not found!",
         status: 404,
+        product: null,
       });
     }
 
