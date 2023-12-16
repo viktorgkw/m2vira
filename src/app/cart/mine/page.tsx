@@ -169,35 +169,37 @@ export default function Cart() {
 
           <div className="space-y-1 text-center pt-4">
             {products.length > 0 && (
-              <div className="flex flex-row justify-center items-center mb-4">
-                <input
-                  className="p-2 rounded-lg dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-48 w-[75%] outline-none text-slate-200 bg-slate-800 mx-1 disabled:opacity-25"
-                  type="text"
-                  value={promocode.code}
-                  disabled={promocodeDisabled}
-                  onChange={(e) =>
-                    setPromocode({ ...promocode, code: e.target.value })
-                  }
-                  placeholder="Enter Promocode"
-                />
+              <>
+                <div className="flex flex-row justify-center items-center mb-4">
+                  <input
+                    className="p-2 rounded-lg dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-48 w-[75%] outline-none text-slate-200 bg-slate-800 mx-1 disabled:opacity-25"
+                    type="text"
+                    value={promocode.code}
+                    disabled={promocodeDisabled}
+                    onChange={(e) =>
+                      setPromocode({ ...promocode, code: e.target.value })
+                    }
+                    placeholder="Enter Promocode"
+                  />
 
-                <button
-                  onClick={applyPromocode}
-                  disabled={promocodeDisabled}
-                  className="flex px-2 py-2 mx-1 bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold border-b-4 border-fuchsia-800 hover:border-fuchsia-600 rounded hover:scale-[1.05] duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:border-indigo-800 dark:hover:border-indigo-600 disabled:opacity-25"
-                >
-                  <FontAwesomeIcon icon={faTicket} width={20} height={20} />
-                </button>
-              </div>
+                  <button
+                    onClick={applyPromocode}
+                    disabled={promocodeDisabled}
+                    className="flex px-2 py-2 mx-1 bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold border-b-4 border-fuchsia-800 hover:border-fuchsia-600 rounded hover:scale-[1.05] duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:border-indigo-800 dark:hover:border-indigo-600 disabled:opacity-25"
+                  >
+                    <FontAwesomeIcon icon={faTicket} width={20} height={20} />
+                  </button>
+                </div>
+
+                <p>
+                  Subtotal:
+                  <span className="font-semibold text-sky-600 dark:text-sky-500">
+                    {" "}
+                    ${subtotal.toFixed(2)}
+                  </span>
+                </p>
+              </>
             )}
-
-            <p>
-              Subtotal:
-              <span className="font-semibold text-sky-600 dark:text-sky-500">
-                {" "}
-                ${subtotal.toFixed(2)}
-              </span>
-            </p>
 
             {promocode.isValid && (
               <>
