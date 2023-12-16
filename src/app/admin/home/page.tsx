@@ -1,7 +1,7 @@
 import { faPercent, faSocks, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { AdminOptionCard } from "../../components/Admin/AdminOptionCard";
 
-export default function Dashboard() {
+export default function AdminDashboardPage() {
   return (
     <>
       <h1 className="text-center font-medium text-3xl md:text-5xl mt-4">

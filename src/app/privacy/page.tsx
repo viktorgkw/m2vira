@@ -1,6 +1,6 @@
 import { Section } from "../components/Privacy/Section";
 
-export default function Policy() {
+export default function PrivacyPolicyPage() {
   return (
     <div className="text-slate-800 min-h-screen flex flex-col justify-center items-center my-4">
       <div className="flex flex-col justify-center items-center dark:bg-slate-800 bg-slate-200 bg-opacity-75 px-3 py-5 rounded-xl mx-2 text-slate-800 dark:text-slate-200">

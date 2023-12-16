@@ -15,7 +15,7 @@ import { CartProduct } from "@/app/components/Cart/Mine/CartProduct";
 import { CartProductType } from "@/types/CartProductType";
 import { PromocodeType } from "@/types/PromocodeType";
 
-export default function Cart() {
+export default function MyCartPage() {
   const router = useRouter();
 
   const { data: session } = useSession({

@@ -4,7 +4,7 @@ import { NoData } from "@/app/components/Global/NoData";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { getAll } from "@/services/products";
 
-export default async function AdminProducts() {
+export default async function AdminProductsPage() {
   const { products } = await getAll();
 
   return (

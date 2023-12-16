@@ -11,7 +11,7 @@ import { LogoutButton } from "../components/Profile/LogoutButton";
 
 config.autoAddCss = false;
 
-export default function ProfilePage() {
+export default function UserProfilePage() {
   const router = useRouter();
 
   const { data: session } = useSession({

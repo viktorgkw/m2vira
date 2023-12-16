@@ -10,7 +10,7 @@ import { FavoriteProduct } from "../components/Favorites/FavoriteProduct";
 import { NoData } from "../components/Global/NoData";
 import { FavoriteProductType } from "@/types/FavoriteProductType";
 
-export default function Favorites() {
+export default function MyFavoritesPage() {
   const router = useRouter();
 
   const { data: session } = useSession({

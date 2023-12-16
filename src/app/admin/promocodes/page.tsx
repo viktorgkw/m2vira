@@ -9,7 +9,7 @@ import { CodesData } from "@/app/components/Admin/CodesData";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { NoData } from "@/app/components/Global/NoData";
 
-export default function AdminPromocodes() {
+export default function AdminPromocodesPage() {
   const router = useRouter();
 
   const [codes, setCodes] = useState<any[] | null>(null);

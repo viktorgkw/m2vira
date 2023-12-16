@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { Loading } from "@/app/components/Loading";
 import { Content } from "@/app/components/Cart/Checkout/Content";
 
-export default function Cart({ params }: any) {
+export default function CheckoutPage({ params }: any) {
   const router = useRouter();
 
   const { data: session } = useSession({
