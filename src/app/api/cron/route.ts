@@ -8,7 +8,10 @@ export async function GET(request: NextRequest) {
       request.headers.get("Authorization") !==
       `Bearer ${process.env.CRON_SECRET}`
     ) {
-      return NextResponse.redirect(new URL("/", request.nextUrl));
+      return NextResponse.json({
+        message: "Unauthorized",
+        status: 500,
+      });
     }
 
     await connect();
