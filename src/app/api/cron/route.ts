@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     await connect();
 
     const date = new Date();
-    date.setMonth(date.getMonth() - 1);
+    date.setDate(date.getDate() - 7);
 
     await Promocodes.deleteMany({ createdAt: { $lt: date } });
 
