@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: "Promocode is valid!",
       status: 200,
-      percent: code.percent,
+      code,
     });
   } catch (err: any) {
     return NextResponse.json({ message: err.message, status: 500 });

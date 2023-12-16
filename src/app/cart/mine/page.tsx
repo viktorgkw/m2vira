@@ -20,6 +20,7 @@ type Product = {
 };
 
 type Promocode = {
+  id: any;
   code: string;
   percent: number;
   isValid: boolean;
@@ -37,6 +38,7 @@ export default function Cart() {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [promocode, setPromocode] = useState<Promocode>({
+    id: null,
     code: "",
     percent: 0,
     isValid: false,
@@ -120,7 +122,8 @@ export default function Cart() {
 
       setPromocode({
         ...promocode,
-        percent: data.percent,
+        id: data.code._id,
+        percent: data.code.percent,
         isValid: true,
       });
 

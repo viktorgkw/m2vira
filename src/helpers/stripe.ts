@@ -10,6 +10,7 @@ type Product = {
 };
 
 type Promocode = {
+  id: any;
   code: string;
   percent: number;
   isValid: boolean;
@@ -52,6 +53,11 @@ export async function checkout({
     );
 
     stripeProducts.push(prods);
+
+    await fetch("https://m2vira.vercel.app/api/promocodes/delete", {
+      method: "POST",
+      body: JSON.stringify({ _id: promocode.id }),
+    });
   } else {
     stripeProducts = products.map((p) => {
       return {
