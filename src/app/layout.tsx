@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Varela_Round } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import Theme from "./ThemeProvider";
+import { NextAuthProvider } from "./AuthProvider";
 import { Toast } from "./components/Toast";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
-import Theme from "./ThemeProvider";
-import { NextAuthProvider } from "./AuthProvider";
 import "./globals.css";
 
 const font = Varela_Round({

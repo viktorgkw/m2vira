@@ -1,24 +1,21 @@
 "use client";
 
-import { Filters } from "./Filters";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import { Product } from "./Product";
 import { useEffect, useState } from "react";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { NoData } from "../Global/NoData";
+import { Filters } from "./Filters";
+import { Product } from "./Product";
+import { ProductDisplayType } from "@/types/ProductDisplayType";
 
 config.autoAddCss = false;
 
-type ProductInfo = {
-  _id: string;
-  title: string;
-  price: number;
-  images: string[];
-  tags: string[];
-  sizes: string[];
-};
-
-export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
+export const ProductsDisplay = ({
+  products,
+}: {
+  products: ProductDisplayType[];
+}) => {
   const [filteredProducts, setFilteredProducts] =
-    useState<ProductInfo[]>(products);
+    useState<ProductDisplayType[]>(products);
   const [gender, setGender] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [size, setSize] = useState("all");
@@ -42,7 +39,7 @@ export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
   }, [searchTerm, gender, products, size]);
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
       <Filters
         setGender={setGender}
         setSize={setSize}
@@ -50,18 +47,14 @@ export const ProductsDisplay = ({ products }: { products: ProductInfo[] }) => {
       />
 
       {filteredProducts.length === 0 ? (
-        <div className="mt-16 bg-slate-200 dark:bg-slate-800 bg-opacity-75 dark:bg-opacity-75 px-6 py-4 rounded-xl">
-          <p className="font-bold text-red-500 text-2xl md:text-3xl text-center">
-            No products found that match your search!
-          </p>
-        </div>
+        <NoData text="No products found that match your search!" />
       ) : (
         <div className="flex flex-wrap items-center justify-center my-6">
-          {filteredProducts.map((p: ProductInfo) => (
+          {filteredProducts.map((p: ProductDisplayType) => (
             <Product key={p._id} product={p} />
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };

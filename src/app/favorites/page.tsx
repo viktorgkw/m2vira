@@ -2,17 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FavoriteProduct } from "../components/Favorites/FavoriteProduct";
-import { Loading } from "@/app/components/Loading";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-
-type FavoriteProductInfo = {
-  _id: string;
-  title: string;
-  price: number;
-  images: string[];
-};
+import { Title } from "../components/Global/Title";
+import { Loading } from "../components/Loading";
+import { FavoriteProduct } from "../components/Favorites/FavoriteProduct";
+import { NoData } from "../components/Global/NoData";
+import { FavoriteProductType } from "@/types/FavoriteProductType";
 
 export default function Favorites() {
   const router = useRouter();
@@ -24,7 +20,7 @@ export default function Favorites() {
     },
   });
 
-  const [favorites, setFavorites] = useState<FavoriteProductInfo[] | null>();
+  const [favorites, setFavorites] = useState<FavoriteProductType[] | null>();
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -64,11 +60,7 @@ export default function Favorites() {
   return (
     <>
       <div className="flex flex-col items-center justify-center my-8">
-        <p className="text-2xl md:text-5xl uppercase text-slate-200 font-bold">
-          Your Favorites
-        </p>
-
-        <hr className="h-1 w-52 md:w-96 mx-auto mb-4 border-0 rounded md:mt-5 md:mb-6 bg-gradient-to-r from-slate-300 via-slate-200 to-slate-300 drop-shadow-lg" />
+        <Title text="Favorites" />
 
         {!favorites || !session?.user ? (
           <Loading />
@@ -84,11 +76,7 @@ export default function Favorites() {
             ))}
           </div>
         ) : (
-          <div className="mt-16">
-            <p className="font-bold text-red-500 text-2xl text-center">
-              You have no favorites added!
-            </p>
-          </div>
+          <NoData text="You have no favorites added!" />
         )}
       </div>
     </>

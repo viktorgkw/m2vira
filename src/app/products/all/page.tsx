@@ -10,9 +10,5 @@ export default async function AllProducts() {
 
   if (data.status !== 200 || data.products.length === 0) return <NoProducts />;
 
-  return (
-    <div className="flex flex-col items-center justify-center">
-      <ProductsDisplay products={data.products} />
-    </div>
-  );
+  return <ProductsDisplay products={data.products} />;
 }

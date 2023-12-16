@@ -23,35 +23,58 @@ export const UsersData = ({ users }: any) => {
   };
 
   return (
-    <tbody>
-      {usrs.map((u: any) => (
-        <tr key={u.username}>
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <div className="flex items-center">
-              <p className="whitespace-no-wrap text-violet-600">{u.username}</p>
-            </div>
-          </td>
+    <table className="leading-normal w-auto">
+      <thead>
+        <tr>
+          <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            Username
+          </th>
 
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="whitespace-no-wrap text-emerald-600">{u.email}</p>
-          </td>
+          <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            Email
+          </th>
 
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="whitespace-no-wrap text-emerald-600">
-              {u.isAdmin ? "Yes" : "No"}
-            </p>
-          </td>
+          <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            Is Admin
+          </th>
 
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <button
-              onClick={() => deleteUser(u._id)}
-              className="px-3 py-2 text-sm text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none font-medium mx-1"
-            >
-              Delete
-            </button>
-          </td>
+          <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            Functions
+          </th>
         </tr>
-      ))}
-    </tbody>
+      </thead>
+      <tbody>
+        {usrs.map((u: any) => (
+          <tr key={u.username}>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <div className="flex items-center">
+                <p className="whitespace-no-wrap text-violet-600">
+                  {u.username}
+                </p>
+              </div>
+            </td>
+
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="whitespace-no-wrap text-emerald-600">{u.email}</p>
+            </td>
+
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="whitespace-no-wrap text-emerald-600">
+                {u.isAdmin ? "Yes" : "No"}
+              </p>
+            </td>
+
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <button
+                onClick={() => deleteUser(u._id)}
+                className="px-3 py-2 text-sm text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none font-medium mx-1"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };

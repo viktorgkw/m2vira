@@ -3,23 +3,15 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { CartProductType } from "@/types/CartProductType";
 
 config.autoAddCss = false;
-
-type Product = {
-  id: string;
-  title: string;
-  price: number;
-  color: string;
-  size: string;
-  image: string;
-};
 
 export const CartProduct = ({
   product,
   removeFromCart,
 }: {
-  product: Product;
+  product: CartProductType;
   removeFromCart: any;
 }) => {
   return (

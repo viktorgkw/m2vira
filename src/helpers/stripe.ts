@@ -1,27 +1,13 @@
 import Stripe from "stripe";
-
-type Product = {
-  id: string;
-  title: string;
-  price: number;
-  color: string;
-  size: string;
-  image: string;
-};
-
-type Promocode = {
-  id: any;
-  code: string;
-  percent: number;
-  isValid: boolean;
-};
+import { CartProductType } from "@/types/CartProductType";
+import { PromocodeType } from "@/types/PromocodeType";
 
 export async function checkout({
   products,
   promocode,
 }: {
-  products: Product[];
-  promocode: Promocode;
+  products: CartProductType[];
+  promocode: PromocodeType;
 }): Promise<string> {
   const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 
