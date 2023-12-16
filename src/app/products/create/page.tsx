@@ -1,5 +1,3 @@
-"use client";
-
 import { CreateProductForm } from "@/app/components/Products/CreateProductForm";
 
 export default function CreateProduct() {
