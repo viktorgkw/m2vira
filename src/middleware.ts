@@ -2,8 +2,6 @@ import { decode } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(req: NextRequest) {
-  return NextResponse.next();
-
   const sessionToken =
     req.cookies.get("__Secure-next-auth.session-token")?.value || null;
 
