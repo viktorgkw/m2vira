@@ -19,11 +19,7 @@ export async function GET(request: NextRequest) {
     const promocodes = await Promocodes.find();
 
     for (const pc of promocodes) {
-      const createdAt = new Date(pc.createdAt);
-      const differenceInDays =
-        (new Date().getTime() - createdAt.getTime()) / (1000 * 3600 * 24 * 7);
-
-      if (differenceInDays >= 7) {
+      if (Date.now() > pc.createdAt) {
         await Promocodes.deleteOne({ code: pc.code });
       }
     }
