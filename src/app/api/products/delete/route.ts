@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Product from "@/models/productModel";
 import { connect } from "@/helpers/mongoDB";
 import Favorites from "@/models/favoritesModel";
+import User from "@/models/userModel";
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,6 +19,9 @@ export async function POST(request: NextRequest) {
     }
 
     await Favorites.deleteMany({ productId: _id });
+
+    User.updateMany({ "cart.id": _id }, { $pull: { cart: { id: _id } } });
+
     await Product.deleteOne({ _id: _id });
 
     return NextResponse.json({
