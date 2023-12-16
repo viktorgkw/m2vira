@@ -2,11 +2,10 @@ import Link from "next/link";
 import { ProductsData } from "@/app/components/Admin/ProductsData";
 import { NoData } from "@/app/components/Global/NoData";
 import { FormTitle } from "@/app/components/Global/FormTitle";
+import { getAll } from "@/services/products";
 
 export default async function AdminProducts() {
-  const raw = await fetch(`${process.env.DOMAIN}/api/products/all`);
-
-  const res = await raw.json();
+  const { products } = await getAll();
 
   return (
     <>
@@ -21,10 +20,10 @@ export default async function AdminProducts() {
         </Link>
       </div>
 
-      {res.products.length > 0 ? (
+      {products.length > 0 ? (
         <div className="px-4 sm:px-8 py-4 overflow-x-auto md:flex md:justify-center">
           <div className="inline-block max-w-fit shadow rounded-lg overflow-hidden">
-            <ProductsData products={res.products} />
+            <ProductsData products={products} />
           </div>
         </div>
       ) : (
