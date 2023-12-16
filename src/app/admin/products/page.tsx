@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductsData } from "@/app/components/Admin/ProductsData";
 import { NoData } from "@/app/components/Global/NoData";
 import { FormTitle } from "@/app/components/Global/FormTitle";
-import { getAll } from "@/services/products";
+import { getAll } from "@/services/productsService";
 
 export default async function AdminProductsPage() {
   const { products } = await getAll();

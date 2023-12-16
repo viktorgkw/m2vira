@@ -7,7 +7,7 @@ import { FormButton } from "../../Global/FormButton";
 import { CreateProductInputFields } from "./CreateProductInputFields";
 import { FormTitle } from "../../Global/FormTitle";
 import { CreateProductType } from "@/types/CreateProductType";
-import { create } from "@/services/products";
+import { create } from "@/services/productsService";
 
 export const CreateProductForm = () => {
   const router = useRouter();

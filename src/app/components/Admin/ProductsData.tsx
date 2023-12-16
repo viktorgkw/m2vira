@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { deleteById } from "@/services/products";
+import { deleteById } from "@/services/productsService";
 
 export const ProductsData = ({ products }: any) => {
   const [prods, setProds] = useState(products);
