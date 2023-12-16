@@ -19,6 +19,12 @@ type Product = {
   image: string;
 };
 
+type Promocode = {
+  code: string;
+  percent: number;
+  isValid: boolean;
+};
+
 export default function Cart() {
   const router = useRouter();
 
@@ -30,8 +36,11 @@ export default function Cart() {
   });
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [promocode, setPromocode] = useState("");
-  const [appliedCode, setAppliedCode] = useState("");
+  const [promocode, setPromocode] = useState<Promocode>({
+    code: "",
+    percent: 0,
+    isValid: false,
+  });
   const [promocodeDisabled, setPromocodeDisabled] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -67,11 +76,15 @@ export default function Cart() {
         data.cart.reduce((total: any, { price }: any) => total + price, 0)
       );
 
+      if (promocode.percent > 0) {
+        setSubtotal(subtotal - (subtotal * promocode.percent) / 100);
+      }
+
       setLoading(false);
     };
 
     fetchData();
-  }, [router, session?.user?.email]);
+  }, [promocode, router, session, subtotal]);
 
   const removeFromCart = async (prodId: any) => {
     const res = await fetch(`https://m2vira.vercel.app/api/cart/delete`, {
@@ -89,6 +102,10 @@ export default function Cart() {
 
     toast.success(data.message);
     setProducts(products.filter((p) => p.id !== prodId));
+
+    if (promocode.percent > 0) {
+      setSubtotal(subtotal - (subtotal * promocode.percent) / 100);
+    }
   };
 
   const applyPromocode = async () => {
@@ -109,7 +126,11 @@ export default function Cart() {
         throw new Error(data.message);
       }
 
-      setAppliedCode(promocode);
+      setPromocode({
+        ...promocode,
+        percent: Number(data.percent),
+        isValid: true,
+      });
       setSubtotal(subtotal - (subtotal * Number(data.percent)) / 100);
 
       toast.success("Promocode applied!");
@@ -157,9 +178,11 @@ export default function Cart() {
                 <input
                   className="p-2 rounded-lg dark:text-slate-800 dark:bg-slate-200 drop-shadow-lg md:w-48 w-[75%] outline-none text-slate-200 bg-slate-800 mx-1 disabled:opacity-25"
                   type="text"
-                  value={promocode}
+                  value={promocode.code}
                   disabled={promocodeDisabled}
-                  onChange={(e) => setPromocode(e.target.value)}
+                  onChange={(e) =>
+                    setPromocode({ ...promocode, code: e.target.value })
+                  }
                   placeholder="Enter Promocode"
                 />
 
@@ -202,7 +225,7 @@ export default function Cart() {
               <button
                 disabled={checkoutDisabled}
                 onClick={async () =>
-                  router.push(await checkout({ products, appliedCode }))
+                  router.push(await checkout({ products, promocode }))
                 }
                 className="px-2 py-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold border-b-4 border-emerald-800 hover:border-emerald-600 rounded hover:scale-[1.05] duration-300 disabled:opacity-50 h-full mx-1"
               >

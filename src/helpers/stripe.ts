@@ -9,12 +9,18 @@ type Product = {
   image: string;
 };
 
+type Promocode = {
+  code: string;
+  percent: number;
+  isValid: boolean;
+};
+
 export async function checkout({
   products,
-  appliedCode,
+  promocode,
 }: {
   products: Product[];
-  appliedCode: string;
+  promocode: Promocode;
 }): Promise<string> {
   const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 
@@ -45,6 +51,29 @@ export async function checkout({
     },
     quantity: 1,
   });
+
+  if (promocode.isValid) {
+    const totalAmount = stripeProducts.reduce(
+      (total, product) => total + product.price_data.unit_amount,
+      0
+    );
+
+    const discountAmount = totalAmount * (promocode.percent / 100);
+
+    stripeProducts.push({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: "Discount",
+          images: [
+            "https://firebasestorage.googleapis.com/v0/b/m2vira-storage.appspot.com/o/discount.jpg?alt=media&token=cbe6e849-4402-4372-a42b-fbfe6a4c4598",
+          ],
+        },
+        unit_amount: -Math.round(discountAmount * 100),
+      },
+      quantity: 1,
+    });
+  }
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
