@@ -31,7 +31,7 @@ export async function deleteById(_id: string) {
 export async function validatePromocode(promocode: any) {
   const res = await fetch(`${process.env.DOMAIN}/api/promocodes/validate`, {
     method: "POST",
-    body: JSON.stringify({ promocode: promocode.id }),
+    body: JSON.stringify({ promocode: promocode.code }),
   });
   const data = await res.json();
 

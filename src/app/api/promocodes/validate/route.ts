@@ -6,8 +6,8 @@ export async function POST(request: NextRequest) {
   try {
     await connect();
 
-    const body = await request.json();
-    const code = await Promocodes.findOne({ code: body.promocode });
+    const { promocode } = await request.json();
+    const code = await Promocodes.findOne({ code: promocode });
 
     if (!code) {
       return NextResponse.json({
