@@ -17,7 +17,7 @@ import {
   faMoon,
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
-import { isAdminByEmail } from "@/services/authService";
+import { isAdministrator } from "@/services/authService";
 
 config.autoAddCss = false;
 
@@ -29,7 +29,7 @@ export const NavBar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsAdmin(await isAdminByEmail());
+      setIsAdmin(await isAdministrator());
     };
 
     fetchData();

@@ -29,3 +29,27 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: err.message, status: 500 });
   }
 }
+
+export async function POST(request: NextRequest) {
+  try {
+    await connect();
+
+    const { email } = await request.json();
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return NextResponse.json({
+        status: 404,
+      });
+    }
+
+    return NextResponse.json({
+      status: 200,
+      isAdmin: user.isAdmin,
+    });
+  } catch (err: any) {
+    return NextResponse.json({ message: err.message, status: 500 });
+  }
+}
+
+export const dynamic = "force-dynamic";

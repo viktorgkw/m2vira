@@ -26,3 +26,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: err.message, status: 500, cart: [] });
   }
 }
+
+export const dynamic = "force-dynamic";

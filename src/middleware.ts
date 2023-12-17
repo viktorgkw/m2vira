@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { decodeCookie } from "./helpers/cookieDecoder";
-import { isAdminByEmail } from "./services/authService";
+import { isAdministratorByEmail } from "./services/authService";
 
 export default async function middleware(request: NextRequest) {
   const isAdminRoute: boolean = adminRoutesArray.some((url) =>
@@ -28,7 +28,7 @@ async function adminRoutes(request: NextRequest) {
     }
   }
 
-  const isAdmin = await isAdminByEmail();
+  const isAdmin = await isAdministratorByEmail(decoded.email);
 
   if (!isAdmin) {
     if (request.url.includes("/api/")) {
