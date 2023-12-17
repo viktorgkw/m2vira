@@ -39,6 +39,7 @@ export const Footer = () => {
                 </li>
               </ul>
             </div>
+
             <div>
               <h2 className="mb-6 text-sm font-semibold uppercase text-emerald-400 cursor-default">
                 Legal

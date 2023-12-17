@@ -4,10 +4,10 @@ import { isAdministratorByEmail } from "./services/authService";
 
 export default async function middleware(request: NextRequest) {
   const isAdminRoute: boolean = adminRoutesArray.some((url) =>
-    request.url.replace(process.env.DOMAIN!, "").startsWith(url)
+    request.url.includes(url)
   );
   const isAuthenticatedRoute: boolean = authenticatedRoutesArray.some((url) =>
-    request.url.replace(process.env.DOMAIN!, "").startsWith(url)
+    request.url.includes(url)
   );
 
   if (isAdminRoute) {

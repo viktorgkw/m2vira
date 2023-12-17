@@ -1,14 +1,27 @@
+"use client";
+
 import { redirect } from "next/navigation";
 import { UsersData } from "@/app/components/Admin/UsersData";
 import { Loading } from "@/app/components/Loading";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { NoData } from "@/app/components/Global/NoData";
 import { getAllUsers } from "@/services/usersService";
+import { useEffect, useState } from "react";
 
-export default async function AdminUsers() {
-  const { status, users } = await getAllUsers();
+export default function AdminUsers() {
+  const [users, setUsers] = useState<any[]>();
 
-  if (status !== 200) redirect("/");
+  useEffect(() => {
+    const fetchData = async () => {
+      const { status, users } = await getAllUsers();
+
+      if (status !== 200) redirect("/");
+
+      setUsers(users);
+    };
+
+    fetchData();
+  });
 
   return (
     <>

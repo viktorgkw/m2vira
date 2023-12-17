@@ -40,7 +40,7 @@ export const NavBar = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="left-links">
           <ul className="flex flex-row text-slate-800 dark:text-slate-200">
-            <li className="mx-3 hover:text-cyan-500">
+            <li className="mx-3 dark:hover:text-emerald-500 hover:text-purple-700">
               <Link
                 href="/"
                 className="flex flex-col justify-center items-center"
@@ -50,7 +50,7 @@ export const NavBar = () => {
               </Link>
             </li>
 
-            <li className="mx-3 hover:text-violet-500">
+            <li className="mx-3 dark:hover:text-sky-500 hover:text-pink-700">
               <Link
                 href="/products/all"
                 className="flex flex-col justify-center items-center"
@@ -61,7 +61,7 @@ export const NavBar = () => {
             </li>
 
             {isAdmin && (
-              <li className="mx-3 hover:text-fuchsia-500">
+              <li className="mx-3 hover:text-fuchsia-500 dark:hover:text-cyan-600">
                 <Link
                   href="/admin/home"
                   className="flex flex-col justify-center items-center"
@@ -139,7 +139,7 @@ export const NavBar = () => {
                     onClick={() =>
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
-                    className="flex flex-col justify-center items-center hover:text-pink-300"
+                    className="flex flex-col justify-center items-center dark:hover:text-pink-400 hover:text-slate-500"
                   >
                     {theme === "dark" ? (
                       <>

@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
-import { connect } from "@/helpers/mongoDB";
+import { NextRequest, NextResponse } from "next/server";
 import Promocodes from "@/models/promocodeModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await connect();
 
