@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { signUserIn } from "@/services/authService";
 
 const authOptions = {
   providers: [
@@ -14,13 +15,7 @@ const authOptions = {
   callbacks: {
     async signIn({ user, account }: any) {
       if (account.provider === "google") {
-        await fetch(`${process.env.DOMAIN}/api/signIn`, {
-          method: "POST",
-          body: JSON.stringify({
-            name: user.name,
-            email: user.email,
-          }),
-        });
+        await signUserIn(user.name, user.email);
       }
       return user;
     },

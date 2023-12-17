@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Loading } from "@/app/components/Loading";
 import { Content } from "@/app/components/Cart/Checkout/Content";
+import { deleteById } from "@/services/promocodesService";
+import { orderCart } from "@/services/cartService";
 
 export default function CheckoutPage({ params }: any) {
   const router = useRouter();
@@ -20,16 +22,10 @@ export default function CheckoutPage({ params }: any) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch(`${process.env.DOMAIN}/api/cart/order`, {
-        method: "POST",
-        body: JSON.stringify({ userEmail: session?.user?.email }),
-      });
+      await orderCart(session?.user?.email);
 
       if (params.id !== null) {
-        await fetch(`${process.env.DOMAIN}/api/promocodes/delete`, {
-          method: "POST",
-          body: JSON.stringify({ _id: params.id }),
-        });
+        await deleteById(params.id);
       }
 
       setLoading(false);

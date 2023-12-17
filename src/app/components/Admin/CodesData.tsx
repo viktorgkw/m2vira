@@ -2,23 +2,19 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { deleteById } from "@/services/promocodesService";
 
 export const CodesData = ({ codesData }: any) => {
   const [codes, setCodes] = useState(codesData);
 
   const deleteCode = async (id: any) => {
-    const raw = await fetch(`${process.env.DOMAIN}/api/promocodes/delete`, {
-      method: "POST",
-      body: JSON.stringify({ _id: id }),
-    });
+    const { status, message } = await deleteById(id);
 
-    const res = await raw.json();
-
-    if (res.status === 200) {
+    if (status === 200) {
       setCodes(codes.filter((u: any) => u._id !== id));
-      toast.success(res.message);
+      toast.success(message);
     } else {
-      toast.error(res.message);
+      toast.error(message);
     }
   };
 

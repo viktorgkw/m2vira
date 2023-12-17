@@ -14,6 +14,8 @@ import { ButtonsSection } from "@/app/components/Cart/Mine/ButtonsSection";
 import { CartProduct } from "@/app/components/Cart/Mine/CartProduct";
 import { CartProductType } from "@/types/CartProductType";
 import { PromocodeType } from "@/types/PromocodeType";
+import { validatePromocode } from "@/services/promocodesService";
+import { deleteFromCart, getAllProductsFromCart } from "@/services/cartService";
 
 export default function MyCartPage() {
   const router = useRouter();
@@ -49,76 +51,58 @@ export default function MyCartPage() {
     setLoading(true);
 
     const fetchData = async () => {
-      const res = await fetch(`${process.env.DOMAIN}/api/cart/get`, {
-        method: "POST",
-        body: JSON.stringify({ email: session?.user?.email }),
-      });
-
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        toast.error(data.message);
-        router.push("/");
-      }
-
-      setProducts(data.cart);
-
-      setSubtotal(
-        data.cart.reduce((total: any, { price }: any) => total + price, 0)
+      const { status, message, cart } = await getAllProductsFromCart(
+        session?.user?.email
       );
 
-      setLoading(false);
+      if (status !== 200) {
+        toast.error(message);
+        router.push("/");
+      } else {
+        setProducts(cart);
+        setSubtotal(
+          cart.reduce((total: any, { price }: any) => total + price, 0)
+        );
+        setLoading(false);
+      }
     };
 
     fetchData();
   }, [router, session, subtotal]);
 
   const removeFromCart = async (prodId: any) => {
-    const res = await fetch(`${process.env.DOMAIN}/api/cart/delete`, {
-      method: "POST",
-      body: JSON.stringify({ id: prodId, email: session?.user?.email }),
-    });
+    const { status, message } = await deleteFromCart(
+      prodId,
+      session?.user?.email
+    );
 
-    const data = await res.json();
-
-    if (data.status !== 200) {
-      toast.error(data.message);
+    if (status !== 200) {
+      toast.error(message);
       router.push("/");
-      return;
+    } else {
+      toast.success(message);
+      setProducts(products.filter((p) => p.id !== prodId));
     }
-
-    toast.success(data.message);
-    setProducts(products.filter((p) => p.id !== prodId));
   };
 
   const applyPromocode = async () => {
     setPromocodeDisabled(true);
+    const { status, message, code } = await validatePromocode(promocode);
 
-    try {
-      const res = await fetch(`${process.env.DOMAIN}/api/promocodes/validate`, {
-        method: "POST",
-        body: JSON.stringify({ promocode: promocode.code }),
-      });
-
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
-      }
-
-      setPromocode({
-        ...promocode,
-        id: data.code._id,
-        percent: data.code.percent,
-        isValid: true,
-      });
-
-      toast.success("Promocode applied!");
-    } catch (err: any) {
-      toast.error(err.message);
+    if (status !== 200) {
+      toast.error(message);
       setPromocode({ ...promocode, code: "" });
       setPromocodeDisabled(false);
+      return;
     }
+
+    setPromocode({
+      ...promocode,
+      id: code._id,
+      percent: code.percent,
+      isValid: true,
+    });
+    toast.success("Promocode applied!");
   };
 
   return (

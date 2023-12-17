@@ -2,23 +2,19 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { deleteUserById } from "@/services/usersService";
 
 export const UsersData = ({ users }: any) => {
   const [usrs, setUsers] = useState(users);
 
   const deleteUser = async (id: any) => {
-    const raw = await fetch(`${process.env.DOMAIN}/api/users/delete`, {
-      method: "POST",
-      body: JSON.stringify({ _id: id }),
-    });
+    const { status, message } = await deleteUserById(id);
 
-    const res = await raw.json();
-
-    if (res.status === 200) {
+    if (status === 200) {
       setUsers(usrs.filter((u: any) => u._id !== id));
-      toast.success(res.message);
+      toast.success(message);
     } else {
-      toast.error(res.message);
+      toast.error(message);
     }
   };
 

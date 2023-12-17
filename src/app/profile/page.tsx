@@ -8,6 +8,7 @@ import { Loading } from "../components/Loading";
 import { UserInfo } from "../components/Profile/UserInfo";
 import { OrdersLayout } from "../components/Profile/OrdersLayout";
 import { LogoutButton } from "../components/Profile/LogoutButton";
+import { getAll } from "@/services/ordersService";
 
 config.autoAddCss = false;
 
@@ -24,14 +25,12 @@ export default function UserProfilePage() {
   const [orders, setOrders] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${process.env.DOMAIN}/api/orders`, {
-      method: "POST",
-      body: JSON.stringify({ email: session?.user?.email }),
-    })
-      .then((raw) => raw.json())
-      .then((data) => {
-        setOrders(data.orders);
-      });
+    const fetchData = async () => {
+      const { orders } = await getAll(session?.user?.email);
+      setOrders(orders);
+    };
+
+    fetchData();
   }, [session, router]);
 
   return (

@@ -7,6 +7,7 @@ import { UsersData } from "@/app/components/Admin/UsersData";
 import { Loading } from "@/app/components/Loading";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { NoData } from "@/app/components/Global/NoData";
+import { getAllUsers } from "@/services/usersService";
 
 export default function AdminUsers() {
   const router = useRouter();
@@ -15,16 +16,14 @@ export default function AdminUsers() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`${process.env.DOMAIN}/api/users/all`);
+      const { status, message, users } = await getAllUsers();
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        toast.error(data.message);
+      if (status !== 200) {
+        toast.error(message);
         router.push("/");
       }
 
-      setUsers(data.users);
+      setUsers(users);
     };
 
     fetchData();

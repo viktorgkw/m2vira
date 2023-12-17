@@ -17,6 +17,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { signIn, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { isAdminByEmail } from "@/services/authService";
 
 config.autoAddCss = false;
 
@@ -28,14 +29,7 @@ export const NavBar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`${process.env.DOMAIN}/api/permissions`, {
-        method: "POST",
-        body: JSON.stringify({ email: session?.user?.email }),
-      });
-
-      const data = await res.json();
-
-      setIsAdmin(data.isAdmin);
+      setIsAdmin(await isAdminByEmail(session?.user?.email));
     };
 
     fetchData();

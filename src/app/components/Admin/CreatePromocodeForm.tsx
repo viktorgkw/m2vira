@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FormButton } from "../Global/FormButton";
+import { createPromocode } from "@/services/promocodesService";
 
 export const CreatePromocodeForm = () => {
   const router = useRouter();
@@ -21,24 +22,17 @@ export const CreatePromocodeForm = () => {
   }, [code, percent]);
 
   const create = async () => {
-    try {
-      const res = await fetch(`${process.env.DOMAIN}/api/promocodes/create`, {
-        method: "POST",
-        body: JSON.stringify({ code, percent }),
-      });
+    const { status, message } = await createPromocode(code, percent);
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
-      }
-
-      toast.success(data.message);
-      router.push("/admin/promocodes");
-    } catch (err: any) {
-      toast.error(err.message);
+    if (status !== 200) {
+      toast.error(message);
+      return;
     }
+
+    toast.success(message);
+    router.push("/admin/promocodes");
   };
+
   return (
     <div className="flex flex-col items-center rounded-lg md:py-14 md:px-24 dark:bg-slate-800 dark:bg-opacity-70 my-4 px-1 py-6 bg-slate-200 bg-opacity-70">
       <h1 className="text-4xl md:text-5xl font-bold dark:text-slate-200 text-slate-800 drop-shadow-lg">

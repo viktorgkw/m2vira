@@ -9,6 +9,7 @@ import { Loading } from "../components/Loading";
 import { FavoriteProduct } from "../components/Favorites/FavoriteProduct";
 import { NoData } from "../components/Global/NoData";
 import { FavoriteProductType } from "@/types/FavoriteProductType";
+import { getAll, removeFav } from "@/services/favoritesService";
 
 export default function MyFavoritesPage() {
   const router = useRouter();
@@ -25,14 +26,8 @@ export default function MyFavoritesPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`${process.env.DOMAIN}/api/favorites/all`, {
-        method: "POST",
-        body: JSON.stringify({ email: session?.user?.email }),
-      });
-
-      const data = await res.json();
-
-      setFavorites(data.products);
+      const { products } = await getAll(session?.user?.email);
+      setFavorites(products);
     };
 
     fetchData();
@@ -41,16 +36,12 @@ export default function MyFavoritesPage() {
   const removeFavorite = async (prodId: any) => {
     setDisabled(true);
 
-    const raw = await fetch(`${process.env.DOMAIN}/api/favorites/remove`, {
-      method: "POST",
-      body: JSON.stringify({ _id: prodId, email: session!.user?.email }),
-    });
-    const data = await raw.json();
+    const { message, status } = await removeFav(prodId, session?.user?.email);
 
-    if (data.status !== 200) {
-      toast.error(data.message);
+    if (status !== 200) {
+      toast.error(message);
     } else {
-      toast.success(data.message);
+      toast.success(message);
       setFavorites(favorites!.filter((fav) => fav._id !== prodId));
     }
 

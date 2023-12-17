@@ -9,6 +9,8 @@ import { ProductDetailsMaterials } from "./ProductDetailsMaterials";
 import { ProductDetailsButtons } from "./ProductDetailsButtons";
 import { ProductDetailsType } from "@/types/ProductDetailsType";
 import { ProductStateType } from "@/types/ProductStateType";
+import { addFavorite } from "@/services/favoritesService";
+import { addToCart } from "@/services/cartService";
 
 export const ProductDetailsOptions = ({
   product,
@@ -28,50 +30,33 @@ export const ProductDetailsOptions = ({
   const onFavoriteAdd = async () => {
     setIsButtonDisabled(true);
 
-    try {
-      const res = await fetch(`${process.env.DOMAIN}/api/favorites/add`, {
-        method: "POST",
-        body: JSON.stringify({
-          _id: product?._id,
-          email: session?.user?.email,
-        }),
-      });
+    const { status, message } = await addFavorite(
+      productState.id,
+      session?.user?.email
+    );
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
-      }
-
-      toast.success(data.message);
-    } catch (err: any) {
-      toast.error(err.message);
+    if (status !== 200) {
+      toast.error(message);
+      setIsButtonDisabled(false);
+      return;
     }
 
+    toast.success(message);
     setIsButtonDisabled(false);
   };
 
   const onCartAdd = async () => {
     setIsButtonDisabled(true);
 
-    try {
-      const res = await fetch(`${process.env.DOMAIN}/api/cart/add`, {
-        method: "POST",
-        body: JSON.stringify({
-          productState,
-          email: session?.user?.email,
-        }),
-      });
+    const { status, message } = await addToCart(
+      productState,
+      session?.user?.email
+    );
 
-      const data = await res.json();
-
-      if (data.status !== 200) {
-        throw new Error(data.message);
-      }
-
-      toast.success(data.message);
-    } catch (err: any) {
-      toast.error(err.message);
+    if (status !== 200) {
+      toast.error(message);
+    } else {
+      toast.success(message);
     }
 
     setIsButtonDisabled(false);
