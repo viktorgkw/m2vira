@@ -1,12 +1,8 @@
-export async function addFavorite(
-  _id: string,
-  email: string | undefined | null
-) {
+export async function addFavorite(_id: string) {
   const res = await fetch(`${process.env.DOMAIN}/api/favorites/add`, {
     method: "POST",
     body: JSON.stringify({
       _id,
-      email,
     }),
   });
   const data = await res.json();
@@ -14,20 +10,17 @@ export async function addFavorite(
   return { message: data.message, status: data.status };
 }
 
-export async function getAll(email: string | null | undefined) {
-  const res = await fetch(`${process.env.DOMAIN}/api/favorites/all`, {
-    method: "POST",
-    body: JSON.stringify({ email }),
-  });
+export async function getAll() {
+  const res = await fetch(`${process.env.DOMAIN}/api/favorites/all`);
   const data = await res.json();
 
   return data.products;
 }
 
-export async function removeFav(_id: string, email: string | null | undefined) {
+export async function removeFav(_id: string) {
   const res = await fetch(`${process.env.DOMAIN}/api/favorites/remove`, {
     method: "POST",
-    body: JSON.stringify({ _id, email }),
+    body: JSON.stringify({ _id }),
   });
   const data = await res.json();
 

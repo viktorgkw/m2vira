@@ -1,15 +1,18 @@
-import { connect } from "@/helpers/mongoDB";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
 export async function POST(request: NextRequest) {
   try {
     await connect();
 
-    const body = await request.json();
-    const { id, email } = body;
+    const decoded = await decodeCookie(request);
 
-    const user = await User.findOne({ email: email });
+    const body = await request.json();
+    const { id } = body;
+
+    const user = await User.findOne({ email: decoded.email });
 
     if (!user) {
       throw new Error("Unauthorized!");

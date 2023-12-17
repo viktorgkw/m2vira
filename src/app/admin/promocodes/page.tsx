@@ -1,32 +1,15 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import toast from "react-hot-toast";
 import { Loading } from "@/app/components/Loading";
 import { CodesData } from "@/app/components/Admin/CodesData";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { NoData } from "@/app/components/Global/NoData";
 import { getAll } from "@/services/promocodesService";
 
-export default function AdminPromocodesPage() {
-  const [codes, setCodes] = useState<any[]>();
+export default async function AdminPromocodesPage() {
+  const { status, codes } = await getAll();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { status, message, fetchedCodes } = await getAll();
-
-      if (status !== 200) {
-        toast.success(message);
-        redirect("/");
-      }
-
-      setCodes(fetchedCodes);
-    };
-
-    fetchData();
-  });
+  if (status !== 200) redirect("/");
 
   return (
     <>

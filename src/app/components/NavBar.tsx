@@ -1,6 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { signIn, useSession } from "next-auth/react";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -13,10 +17,6 @@ import {
   faMoon,
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import { signIn, useSession } from "next-auth/react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { isAdminByEmail } from "@/services/authService";
 
 config.autoAddCss = false;
@@ -29,7 +29,7 @@ export const NavBar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsAdmin(await isAdminByEmail(session?.user?.email));
+      setIsAdmin(await isAdminByEmail());
     };
 
     fetchData();
@@ -120,7 +120,9 @@ export const NavBar = () => {
                 ) : (
                   <li className="mx-3 hover:text-emerald-500">
                     <button
-                      onClick={() => signIn("google")}
+                      onClick={() =>
+                        signIn("google", { callbackUrl: "/profile" })
+                      }
                       className="flex flex-col justify-center items-center"
                     >
                       <FontAwesomeIcon

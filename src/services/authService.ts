@@ -1,10 +1,5 @@
-export async function isAdminByEmail(email: string | null | undefined) {
-  if (email === null || email === undefined) return false;
-
-  const res = await fetch(`${process.env.DOMAIN}/api/permissions`, {
-    method: "POST",
-    body: JSON.stringify({ email }),
-  });
+export async function isAdminByEmail() {
+  const res = await fetch(`${process.env.DOMAIN}/api/permissions`);
   const data = await res.json();
 
   return data.isAdmin;

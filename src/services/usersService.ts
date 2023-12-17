@@ -3,7 +3,6 @@ export async function getAllUsers() {
   const data = await res.json();
 
   return {
-    message: data.message,
     status: data.status,
     users: data.users,
   };

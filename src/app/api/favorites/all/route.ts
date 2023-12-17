@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from "@/helpers/mongoDB";
-import Product from "@/models/productModel";
 import User from "@/models/userModel";
+import Product from "@/models/productModel";
 import Favorites from "@/models/favoritesModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     await connect();
 
-    const body = await request.json();
-    const { email } = body;
+    const decoded = await decodeCookie(request);
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: decoded.email });
 
     const favs = await Favorites.find({
       userId: user._id,

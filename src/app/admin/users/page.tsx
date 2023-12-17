@@ -1,33 +1,14 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 import { UsersData } from "@/app/components/Admin/UsersData";
 import { Loading } from "@/app/components/Loading";
 import { FormTitle } from "@/app/components/Global/FormTitle";
 import { NoData } from "@/app/components/Global/NoData";
 import { getAllUsers } from "@/services/usersService";
 
-export default function AdminUsers() {
-  const router = useRouter();
+export default async function AdminUsers() {
+  const { status, users } = await getAllUsers();
 
-  const [users, setUsers] = useState<any[] | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { status, message, users } = await getAllUsers();
-
-      if (status !== 200) {
-        toast.error(message);
-        router.push("/");
-      }
-
-      setUsers(users);
-    };
-
-    fetchData();
-  }, [router]);
+  if (status !== 200) redirect("/");
 
   return (
     <>

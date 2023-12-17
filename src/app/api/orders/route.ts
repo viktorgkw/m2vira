@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
 import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     await connect();
 
-    const { email } = await request.json();
-    const user = await User.findOne({ email });
+    const decoded = await decodeCookie(request);
+
+    const user = await User.findOne({ email: decoded.email });
 
     let orders = [];
 

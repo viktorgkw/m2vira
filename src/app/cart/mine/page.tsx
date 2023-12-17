@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Title } from "@/app/components/Global/Title";
@@ -19,13 +18,6 @@ import { deleteFromCart, getAllProductsFromCart } from "@/services/cartService";
 
 export default function MyCartPage() {
   const router = useRouter();
-
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/products/all");
-    },
-  });
 
   const [products, setProducts] = useState<CartProductType[]>([]);
   const [promocode, setPromocode] = useState<PromocodeType>({
@@ -51,9 +43,7 @@ export default function MyCartPage() {
     setLoading(true);
 
     const fetchData = async () => {
-      const { status, message, cart } = await getAllProductsFromCart(
-        session?.user?.email
-      );
+      const { status, message, cart } = await getAllProductsFromCart();
 
       if (status !== 200) {
         toast.error(message);
@@ -68,13 +58,10 @@ export default function MyCartPage() {
     };
 
     fetchData();
-  }, [router, session, subtotal]);
+  }, [router, subtotal]);
 
   const removeFromCart = async (prodId: any) => {
-    const { status, message } = await deleteFromCart(
-      prodId,
-      session?.user?.email
-    );
+    const { status, message } = await deleteFromCart(prodId);
 
     if (status !== 200) {
       toast.error(message);
@@ -111,7 +98,7 @@ export default function MyCartPage() {
         <Title text="Your Cart" />
 
         <div className="flex flex-col max-w-3xl space-y-4 bg-opacity-50 dark:bg-opacity-50 bg-slate-200 dark:bg-slate-800 rounded-xl px-8 py-12">
-          {!session?.user || loading ? (
+          {loading ? (
             <Loading />
           ) : products.length === 0 ? (
             <NoProducts />

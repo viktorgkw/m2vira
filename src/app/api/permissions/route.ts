@@ -1,20 +1,19 @@
-import { connect } from "@/helpers/mongoDB";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
-export async function POST(req: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     await connect();
 
-    const { email } = await req.json();
+    const decoded = await decodeCookie(request);
 
-    if (!email) {
-      return NextResponse.json({
-        status: 404,
-      });
+    if (decoded === null) {
+      return NextResponse.json({ message: "Unauthorized", status: 401 });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: decoded.email });
 
     if (!user) {
       return NextResponse.json({

@@ -1,13 +1,15 @@
-import { connect } from "@/helpers/mongoDB";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
-export async function POST(req: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     await connect();
 
-    const { userEmail } = await req.json();
-    const user = await User.findOne({ email: userEmail });
+    const decoded = await decodeCookie(request);
+
+    const user = await User.findOne({ email: decoded.email });
 
     const orders = user.cart.map((p: any) => ({
       title: p.title,

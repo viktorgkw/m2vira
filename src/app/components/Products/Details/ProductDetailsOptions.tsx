@@ -17,7 +17,7 @@ export const ProductDetailsOptions = ({
 }: {
   product: ProductDetailsType;
 }) => {
-  const { data: session } = useSession();
+  const { status } = useSession();
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [productState, setProductState] = useState<ProductStateType>({
@@ -30,10 +30,7 @@ export const ProductDetailsOptions = ({
   const onFavoriteAdd = async () => {
     setIsButtonDisabled(true);
 
-    const { status, message } = await addFavorite(
-      productState.id,
-      session?.user?.email
-    );
+    const { status, message } = await addFavorite(productState.id);
 
     if (status !== 200) {
       toast.error(message);
@@ -47,10 +44,7 @@ export const ProductDetailsOptions = ({
   const onCartAdd = async () => {
     setIsButtonDisabled(true);
 
-    const { status, message } = await addToCart(
-      productState,
-      session?.user?.email
-    );
+    const { status, message } = await addToCart(productState);
 
     if (status !== 200) {
       toast.error(message);
@@ -86,7 +80,7 @@ export const ProductDetailsOptions = ({
           ${product?.price}
         </span>
 
-        {session?.user && (
+        {status === "authenticated" && (
           <ProductDetailsButtons
             onCartAdd={onCartAdd}
             onFavoriteAdd={onFavoriteAdd}

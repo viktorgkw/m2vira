@@ -4,8 +4,7 @@ export async function getAll() {
 
   return {
     status: data.status,
-    message: data.message,
-    fetchedCodes: data.codes,
+    codes: data.codes,
   };
 }
 

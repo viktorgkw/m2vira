@@ -26,7 +26,7 @@ export default function UserProfilePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setOrders(await getAll(session?.user?.email));
+      setOrders(await getAll());
     };
 
     fetchData();

@@ -1,47 +1,92 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decode } from "next-auth/jwt";
+import { decodeCookie } from "./helpers/cookieDecoder";
+import { isAdminByEmail } from "./services/authService";
 
-export default async function middleware(req: NextRequest) {
-  const sessionToken =
-    req.cookies.get(process.env.AUTH_COOKIE_NAME!)?.value || null;
+export default async function middleware(request: NextRequest) {
+  const isAdminRoute: boolean = adminRoutesArray.some((url) =>
+    request.url.replace(process.env.DOMAIN!, "").startsWith(url)
+  );
+  const isAuthenticatedRoute: boolean = authenticatedRoutesArray.some((url) =>
+    request.url.replace(process.env.DOMAIN!, "").startsWith(url)
+  );
 
-  if (sessionToken === null) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if (isAdminRoute) {
+    return adminRoutes(request);
+  } else if (isAuthenticatedRoute) {
+    return authenticatedRoutes(request);
   }
-
-  const decoded = await decode({
-    token: sessionToken!,
-    secret: process.env.NEXTAUTH_SECRET!,
-  });
-
-  const raw = await fetch(`${process.env.DOMAIN}/api/permissions`, {
-    method: "POST",
-    body: JSON.stringify({ email: decoded!.email }),
-  });
-
-  const res = await raw.json();
-
-  return res.isAdmin
-    ? NextResponse.next()
-    : NextResponse.redirect(new URL("/", req.url));
 }
 
+async function adminRoutes(request: NextRequest) {
+  const decoded = await decodeCookie(request);
+
+  if (decoded === null) {
+    if (request.url.includes("/api/")) {
+      return NextResponse.json({ message: "No access!", status: 403 });
+    } else {
+      return NextResponse.redirect(new URL("/noaccess", request.url));
+    }
+  }
+
+  const isAdmin = await isAdminByEmail();
+
+  if (!isAdmin) {
+    if (request.url.includes("/api/")) {
+      return NextResponse.json({ message: "No access!", status: 403 });
+    } else {
+      return NextResponse.redirect(new URL("/noaccess", request.url));
+    }
+  }
+}
+
+async function authenticatedRoutes(request: NextRequest) {
+  const decoded = await decodeCookie(request);
+
+  if (decoded === null) {
+    if (request.url.includes("/api/")) {
+      return NextResponse.json({ message: "Unauthorized!", status: 401 });
+    } else {
+      return NextResponse.redirect(new URL("/unauthenticated", request.url));
+    }
+  }
+}
+
+const adminRoutesArray = [
+  "/admin/home",
+  "/admin/products",
+  "/admin/promocodes",
+  "/admin/promocodes/create",
+  "/admin/users",
+  "/products/create",
+  "/products/edit",
+  "/api/products/create",
+  "/api/products/delete",
+  "/api/products/edit",
+  "/api/promocodes/all",
+  "/api/promocodes/create",
+  "/api/promocodes/delete",
+  "/api/users/all",
+  "/api/users/delete",
+];
+
+const authenticatedRoutesArray = [
+  "/cart/mine",
+  "/cart/checkout/",
+  "/api/cart/add",
+  "/api/cart/delete",
+  "/api/cart/add",
+  "/api/cart/order",
+  "/favorites",
+  "/api/favorites/add",
+  "/api/favorites/all",
+  "/api/favorites/remove",
+  "/profile",
+  "/api/orders",
+  "/api/promocodes/validate",
+];
+
+const allRoutes = [...adminRoutesArray, ...authenticatedRoutesArray];
+
 export const config = {
-  matcher: [
-    "/api/promocodes/all",
-    "/api/promocodes/delete",
-    "/api/promocodes/create",
-    "/api/users/all",
-    "/api/users/delete",
-    "/api/products/create",
-    "/api/products/delete",
-    "/api/products/edit",
-    "/products/create",
-    "/products/edit/:path*",
-    "/admin/home",
-    "/admin/products",
-    "/admin/users",
-    "/admin/promocodes",
-    "/admin/promocodes/create",
-  ],
+  matcher: allRoutes,
 };

@@ -1,17 +1,20 @@
-import { connect } from "@/helpers/mongoDB";
-import Product from "@/models/productModel";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
+import Product from "@/models/productModel";
+import { connect } from "@/helpers/mongoDB";
+import { decodeCookie } from "@/helpers/cookieDecoder";
 
 export async function POST(request: NextRequest) {
   try {
     await connect();
 
+    const decoded = await decodeCookie(request);
+
     const body = await request.json();
-    const { productState, email } = body;
+    const { productState } = body;
 
     const product = await Product.findOne({ _id: productState.id });
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: decoded.email });
 
     if (!product || !user) {
       throw new Error("Invalid request!");

@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from "@/helpers/mongoDB";
 import User from "@/models/userModel";
+import { connect } from "@/helpers/mongoDB";
 
 export async function POST(req: NextRequest) {
   try {
     await connect();
 
     const { name, email } = await req.json();
-
     const user = await User.findOne({ email });
 
     if (!user) {
