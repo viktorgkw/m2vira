@@ -9,11 +9,7 @@ import { ProductDisplayType } from "@/types/ProductDisplayType";
 
 config.autoAddCss = false;
 
-export const ProductsDisplay = ({
-  products,
-}: {
-  products: ProductDisplayType[];
-}) => {
+export const ProductsDisplay = ({ products }: { products: any[] }) => {
   const [filteredProducts, setFilteredProducts] =
     useState<ProductDisplayType[]>(products);
   const [gender, setGender] = useState("all");

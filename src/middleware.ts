@@ -85,8 +85,35 @@ const authenticatedRoutesArray = [
   "/api/promocodes/validate",
 ];
 
-const allRoutes = [...adminRoutesArray, ...authenticatedRoutesArray];
-
 export const config = {
-  matcher: allRoutes,
+  matcher: [
+    "/admin/home",
+    "/admin/products",
+    "/admin/promocodes",
+    "/admin/promocodes/create",
+    "/admin/users",
+    "/products/create",
+    "/products/edit",
+    "/api/products/create",
+    "/api/products/delete",
+    "/api/products/edit",
+    "/api/promocodes/all",
+    "/api/promocodes/create",
+    "/api/promocodes/delete",
+    "/api/users/all",
+    "/api/users/delete",
+    "/cart/mine",
+    "/cart/checkout/",
+    "/api/cart/add",
+    "/api/cart/delete",
+    "/api/cart/add",
+    "/api/cart/order",
+    "/favorites",
+    "/api/favorites/add",
+    "/api/favorites/all",
+    "/api/favorites/remove",
+    "/profile",
+    "/api/orders",
+    "/api/promocodes/validate",
+  ],
 };
