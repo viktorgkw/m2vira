@@ -12,11 +12,8 @@ import { detailsById, edit } from "@/services/productsService";
 export const EditProductForm = ({ id }: any) => {
   const router = useRouter();
 
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [product, setProduct] = useState<CreateProductType | null>();
-
-  const [textareaRows, setTextareaRows] = useState(6);
-  const [textareaCols, setTextareaCols] = useState(32);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,24 +30,25 @@ export const EditProductForm = ({ id }: any) => {
   }, [router, id]);
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 768) {
-        setTextareaRows(4);
-        setTextareaCols(21);
-      } else {
-        setTextareaRows(6);
-        setTextareaCols(32);
-      }
+    if (
+      product !== null &&
+      product?.title?.length! > 3 &&
+      product?.description?.length! > 6 &&
+      product?.price !== 0.1 &&
+      product?.images &&
+      product?.materials &&
+      product?.sizes &&
+      product?.colors &&
+      product?.tags
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [product]);
 
   const editProduct = async () => {
-    setIsBtnDisabled(true);
+    setIsDisabled(true);
 
     try {
       const { status, message } = await edit(product);
@@ -65,7 +63,7 @@ export const EditProductForm = ({ id }: any) => {
       toast.error(err.message);
     }
 
-    setIsBtnDisabled(false);
+    setIsDisabled(false);
   };
 
   const handleInputChange = (
@@ -83,14 +81,12 @@ export const EditProductForm = ({ id }: any) => {
         <EditProductInputFields
           product={product}
           handleInputChange={handleInputChange}
-          textareaCols={textareaCols}
-          textareaRows={textareaRows}
         />
 
         <FormButton
           text="Save Changes"
           action={editProduct}
-          isDisabled={isBtnDisabled}
+          isDisabled={isDisabled}
         />
       </div>
     </div>

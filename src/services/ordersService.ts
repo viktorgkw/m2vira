@@ -5,5 +5,5 @@ export async function getAll(userEmail: string | null | undefined) {
   });
   const data = await res.json();
 
-  return { orders: data.orders };
+  return data.orders;
 }

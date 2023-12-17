@@ -21,7 +21,7 @@ export async function getAll(email: string | null | undefined) {
   });
   const data = await res.json();
 
-  return { products: data.products };
+  return data.products;
 }
 
 export async function removeFav(_id: string, email: string | null | undefined) {

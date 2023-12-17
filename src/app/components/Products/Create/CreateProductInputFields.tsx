@@ -1,10 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export const CreateProductInputFields = ({
   product,
   handleImageChange,
   setProduct,
-  textareaRows,
-  textareaCols,
 }: any) => {
+  const [textareaRows, setTextareaRows] = useState(6);
+  const [textareaCols, setTextareaCols] = useState(32);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 768) {
+        setTextareaRows(4);
+        setTextareaCols(21);
+      } else {
+        setTextareaRows(6);
+        setTextareaCols(32);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <label className="dark:text-slate-200 text-slate-800 font-bold text-lg md:text-xl drop-shadow-lg">

@@ -24,26 +24,6 @@ export const CreateProductForm = () => {
     tags: "",
   });
 
-  const [textareaRows, setTextareaRows] = useState(6);
-  const [textareaCols, setTextareaCols] = useState(32);
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 768) {
-        setTextareaRows(4);
-        setTextareaCols(21);
-      } else {
-        setTextareaRows(6);
-        setTextareaCols(32);
-      }
-    }
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   useEffect(() => {
     if (
       product.title.length > 3 &&
@@ -100,8 +80,6 @@ export const CreateProductForm = () => {
           product={product}
           handleImageChange={handleImageChange}
           setProduct={setProduct}
-          textareaRows={textareaRows}
-          textareaCols={textareaCols}
         />
 
         <FormButton

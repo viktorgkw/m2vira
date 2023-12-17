@@ -37,11 +37,10 @@ export const ProductDetailsOptions = ({
 
     if (status !== 200) {
       toast.error(message);
-      setIsButtonDisabled(false);
-      return;
+    } else {
+      toast.success(message);
     }
 
-    toast.success(message);
     setIsButtonDisabled(false);
   };
 

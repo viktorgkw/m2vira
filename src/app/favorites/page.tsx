@@ -26,8 +26,7 @@ export default function MyFavoritesPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { products } = await getAll(session?.user?.email);
-      setFavorites(products);
+      setFavorites(await getAll(session?.user?.email));
     };
 
     fetchData();
