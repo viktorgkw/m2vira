@@ -25,7 +25,7 @@
 - Clone the project
 
 ```bash
-    git clone https://github.com/MlhaelaP/m2vira.git
+    git clone https://github.com/viktorgkw/m2vira.git
 ```
 
 - Hop into the project folder
